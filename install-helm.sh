@@ -10,4 +10,9 @@ chmod 700 get_helm.sh
 helm > /dev/null 2>&1
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add helm https://charts.helm.sh/stable
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm repo update
 
