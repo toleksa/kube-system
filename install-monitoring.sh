@@ -6,7 +6,7 @@ kubectl create namespace monitoring
 #community
 #helm install prometheus prometheus-community/prometheus --set server.persistentVolume.storageClass=longhorn,alertmanager.persistentVolume.storageClass=longhorn --namespace monitoring
 #helm install grafana grafana/grafana --namespace monitoring --set persistence.enabled=true
-helm install monitoring prometheus-community/kube-prometheus-stack --set persistence.enabled=true,server.persistentVolume.storageClass=longhorn,alertmanager.persistentVolume.storageClass=longhorn --namespace monitoring
+helm install monitoring prometheus-community/kube-prometheus-stack --namespace monitoring -f monitoring-values.yaml
 kubectl apply -f prometheus-ingress.yaml -n monitoring
 kubectl apply -f grafana-ingress.yaml -n monitoring
 
