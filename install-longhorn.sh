@@ -15,4 +15,5 @@ kubectl get pods \
 
 kubectl -n longhorn-system get pod
 
+kubectl apply -f longhorn-ingress.yaml
 
