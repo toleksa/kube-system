@@ -17,4 +17,5 @@ echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
 ./install-externaldns.sh
 ./install-monitoring.sh
 
+echo "SOURCE .BASHRC !!!"
 
