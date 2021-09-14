@@ -9,11 +9,11 @@ sleep 90s
 
 kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
-kubectl get pods \
---namespace longhorn-system \
---watch
+#kubectl get pods \
+#--namespace longhorn-system \
+#--watch
 
-kubectl -n longhorn-system get pod
+#kubectl -n longhorn-system get pod
 
 kubectl apply -f longhorn-ingress.yaml
 
