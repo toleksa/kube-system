@@ -15,5 +15,7 @@ kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storagecla
 
 #kubectl -n longhorn-system get pod
 
+echo 'sleeping another 60s because of reasons'
+sleep 60s
 kubectl apply -f longhorn-ingress.yaml
 
