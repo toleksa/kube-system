@@ -19,5 +19,5 @@ set -u
 ./install-externaldns.sh
 ./install-monitoring.sh
 
-echo "SOURCE .BASHRC !!!"
+echo "!!! source ~/.bashrc !!!"
 
