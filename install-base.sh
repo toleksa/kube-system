@@ -6,7 +6,7 @@ curl -sfL https://get.rke2.io | sh -
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
 
-echo "export PATH=$PATH:/var/lib/rancher/rke2/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/var/lib/rancher/rke2/bin" >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
 echo "k(){ kubectl -n \${NAMESPACE:-default} \"\$@\"; }" >> ~/.bashrc
 echo "namespace(){ export NAMESPACE=\"\$1\"; }" >> ~/.bashrc
