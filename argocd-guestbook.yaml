@@ -12,3 +12,8 @@ spec:
     repoURL: https://github.com/toleksa/kube-system.git
     path: example-guestbook
     targetRevision: HEAD
+    syncPolicy:
+      automated:
+        selfHeal: true
+      syncOptions:
+      - CreateNamespace=true
