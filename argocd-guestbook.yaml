@@ -10,5 +10,5 @@ spec:
   project: default
   source:
     repoURL: https://github.com/toleksa/kube-system.git
-    path: .
+    path: example-guestbook
     targetRevision: master
