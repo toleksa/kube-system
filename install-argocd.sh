@@ -23,3 +23,8 @@ kubectl -n argocd patch secret argocd-secret \
     "admin.passwordMtime": "'$(date +%FT%T%Z)'"
   }}'
 
+IP=$(kubectl -n argocd get svc | grep "argocd-server " | gawk '{ print $3 }')
+CMD="argocd login ${IP}:443 --username admin --password password --insecure"
+echo $CMD
+eval $CMD
+
