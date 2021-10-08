@@ -8,11 +8,11 @@ curl -kSs https://raw.githubusercontent.com/kubernetes/examples/master/guestbook
 
 kubectl apply -f argocd-guestbook.yaml
 
-IP=$(kubectl -n argocd get svc | grep "argocd-server " | gawk '{ print $3 }')
-CMD="argocd login ${IP}:443 --username admin --password password --insecure"
-echo $CMD
-eval $CMD
-CMD="argocd app sync guestbook"
-echo $CMD
-eval $CMD
+#IP=$(kubectl -n argocd get svc | grep "argocd-server " | gawk '{ print $3 }')
+#CMD="argocd login ${IP}:443 --username admin --password password --insecure"
+#echo $CMD
+#eval $CMD
+#CMD="argocd app sync guestbook"
+#echo $CMD
+#eval $CMD
 
