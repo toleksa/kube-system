@@ -13,8 +13,10 @@ prometheus:
               storage: 10Gi
   ingress:
     enabled: true
-    hosts: prometheus.kube.ac
+    hosts: 
+    - prometheus.kube.ac
 grafana:
   ingress:
     enabled: true
-    hosts: grafana.kube.ac
+    hosts: 
+    - grafana.kube.ac
