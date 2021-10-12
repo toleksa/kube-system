@@ -8,7 +8,7 @@ helm > /dev/null 2>&1
 helm repo add longhorn https://charts.longhorn.io
 helm repo update
 kubectl create namespace longhorn-system
-helm install longhorn longhorn/longhorn --namespace longhorn-system
+helm install longhorn longhorn/longhorn --namespace longhorn-system -f longhorn-values.yaml
 kubectl apply -f longhorn-ingress.yaml
 
 ### old manual version
