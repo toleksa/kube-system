@@ -9,6 +9,7 @@ helm repo add longhorn https://charts.longhorn.io
 helm repo update
 kubectl create namespace longhorn-system
 helm install longhorn longhorn/longhorn --namespace longhorn-system -f longhorn-values.yaml
+#helm install longhorn longhorn/longhorn --namespace longhorn-system -f longhorn-values.yaml --set ingress.host=longhorn.dev.ac
 kubectl apply -f longhorn-ingress.yaml
 
 ### old manual version
