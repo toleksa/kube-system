@@ -14,9 +14,9 @@ prometheus:
   ingress:
     enabled: true
     hosts: 
-    - prometheus.kube.ac
+    - prometheus.kube2.ac
 grafana:
   ingress:
     enabled: true
     hosts: 
-    - grafana.kube.ac
+    - grafana.kube2.ac
