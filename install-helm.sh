@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash -
 
 #check if installed
 helm > /dev/null 2>&1
