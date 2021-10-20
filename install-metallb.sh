@@ -7,3 +7,4 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.10.2/manif
 
 kubectl apply -f metallb-configmap.yaml
 
+kubectl apply -f config-ingress.yaml

@@ -1,0 +1,16 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-ingress-nginx
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    controller:
+      publishService:
+        enabled: true
+        pathOverride: kube-system/rke2-ingress-nginx-controller
+      service:
+        enabled: true
+        type: LoadBalancer
+#    tcp:
+#      8070: "exphost-configurator/exphost-configurator:8080"
