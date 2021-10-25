@@ -26,5 +26,5 @@ spec:
                       storage: 10Gi
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
