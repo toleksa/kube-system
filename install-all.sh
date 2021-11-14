@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-./install-base.sh
+./install-rke2.sh
 ./install-bash.sh
 ./install-helm.sh
 ./install-longhorn.sh
