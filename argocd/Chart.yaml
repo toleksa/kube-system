@@ -1,0 +1,6 @@
+apiVersion: v2
+name: argocd-main
+description: pack of apps to install by argocd
+type: application
+version: 0.0.1
+appVersion: 0.0.1

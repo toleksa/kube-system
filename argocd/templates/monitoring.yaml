@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: 'https://prometheus-community.github.io/helm-charts'
+    targetRevision: '19.0.2'
+    chart: kube-prometheus-stack
+#    repoURL: 'https://github.com/prometheus-community/helm-charts/'
+#    targetRevision: HEAD
+#    path: charts/kube-prometheus-stack
+    helm:
+      values: |
+        grafana:
+          adminPassword: prom-operator
+          ingress:
+            enabled: true
+            hosts:
+            - "grafana.{{ .Values.domain }}"
+        prometheus:
+          ingress:
+            enabled: true
+            hosts:
+            - "prometheus.{{ .Values.domain }}"
+          prometheusSpec:
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  storageClassName: longhorn
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 5Gi
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=false

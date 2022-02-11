@@ -1,9 +1,14 @@
 #!/bin/bash
 
-echo "installing helm"
+set -euo pipefail
+
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+#check if installed
+helm > /dev/null 2>&1
+
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add helm https://charts.helm.sh/stable
-helm repo add argo-cd https://argoproj.github.io/argo-helm
+
 helm repo update
 

@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: external-dns
+  project: default
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    chart: external-dns
+    targetRevision: 5.4.11
+    helm:
+      values: |
+        sources:
+          - ingress
+        provider: rfc2136
+        rfc2136:
+          host: {{ .Values.externaldns.rfc2136.host }}
+          port: 53
+          zone: {{ .Values.externaldns.rfc2136.zone }}
+          tsigSecret: {{ .Values.externaldns.rfc2136.tsigSecret }}
+          tsigSecretAlg: hmac-sha256
+          tsigKeyname: externaldns-key
+          tsigAxfr: true
+        domainFilters: [{{ .Values.domain }}]
+        serviceAccount: 
+          create: true
+          name: external-dns
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=false
+      - CreateNamespace=true

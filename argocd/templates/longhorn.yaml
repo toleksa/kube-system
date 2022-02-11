@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  destination:
+    namespace: longhorn-system
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: 'https://charts.longhorn.io'
+    targetRevision: '1.2.2'
+    chart: longhorn
+#    repoURL: 'https://github.com/longhorn/longhorn/'
+#    targetRevision: HEAD
+#    path: deploy
+    helm:
+      values: |
+        persistence:
+          defaultClassReplicaCount: {{ .Values.longhorn.defaultClassReplicaCount}}
+        {{- if .Values.longhorn.ingress.enabled }}
+        ingress:
+          enabled: true
+          host: "longhorn.{{ .Values.domain}}"
+        {{- end }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=false
