@@ -63,12 +63,13 @@ until timeout 1 bash -c "cat < /dev/null > /dev/tcp/$IP/443" ; do
   sleep 5s
   echo -n .
 done
+echo ""
+eval $CMD
 echo "Waiting for project"
 until argocd proj list | grep default ; do
   sleep 1s
   echo -n .
 done
 echo ""
-eval $CMD
 argocd app sync argocd-main
 
