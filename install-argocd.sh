@@ -31,20 +31,6 @@ kubectl -n argocd patch secret argocd-secret \
     "admin.passwordMtime": "'$(date +%FT%T%Z)'"
   }}'
 
-#argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/kube-system.git
-URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml" 
-if curl --output /dev/null --silent --head --fail "$URL"; then
-  echo "getting argocd-main.yaml from secret repo"
-  curl "$URL" --silent -o argocd/argocd-main.yaml
-  echo "adjusting metallb pool IP"
-  sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" argocd/argocd-main.yaml
-fi
-
-kubectl apply -f argocd/argocd-main.yaml
-
-# remove argocd entry from helm, now it's selfmanaged
-kubectl delete secret -l owner=helm,name=argocd -n argocd
-
 # argo cli
 curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 chmod +x /usr/local/bin/argocd
@@ -71,5 +57,20 @@ until argocd proj list | grep default ; do
   echo -n .
 done
 echo ""
+
+#argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/kube-system.git
+URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml" 
+if curl --output /dev/null --silent --head --fail "$URL"; then
+  echo "getting argocd-main.yaml from secret repo"
+  curl "$URL" --silent -o argocd/argocd-main.yaml
+  echo "adjusting metallb pool IP"
+  sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" argocd/argocd-main.yaml
+fi
+
+kubectl apply -f argocd/argocd-main.yaml
+
+# remove argocd entry from helm, now it's selfmanaged
+kubectl delete secret -l owner=helm,name=argocd -n argocd
+
 argocd app sync argocd-main
 
