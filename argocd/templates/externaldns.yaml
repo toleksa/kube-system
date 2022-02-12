@@ -25,7 +25,7 @@ spec:
           tsigSecretAlg: hmac-sha256
           tsigKeyname: externaldns-key
           tsigAxfr: true
-        domainFilters: [{{ .Values.domain }}]
+        #domainFilters: [{{ .Values.domain }}]
         serviceAccount: 
           create: true
           name: external-dns
