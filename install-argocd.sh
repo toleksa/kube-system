@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.bashrc
+
 echo "Waiting for kubernetes to start"
 until kubectl get nodes | grep `hostname` | grep " Ready " ; do
   sleep 5s
