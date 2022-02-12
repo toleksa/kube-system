@@ -8,9 +8,7 @@ systemctl start rke2-server.service
 echo "export PATH=\$PATH:/var/lib/rancher/rke2/bin" >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
 
-set +u
 . ~/.bashrc
-set -u
 
 kubectl apply -f - <<EOF
 apiVersion: helm.cattle.io/v1
