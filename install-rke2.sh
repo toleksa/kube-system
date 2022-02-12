@@ -12,7 +12,7 @@ echo "dupa1"
 . ~/.bashrc
 echo "dupa2"
 
-/var/lib/rancher/rke2/bin/kubectl apply -f - <<EOF
+kubectl apply -f - <<EOF
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
