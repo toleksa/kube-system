@@ -2,6 +2,16 @@
 
 . ~/.bashrc
 
+#check if helm installed
+helm > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "ERR: check helm installation"
+  exit 1
+fi
+
+helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo update
+
 echo "Waiting for kubernetes to start"
 until kubectl get nodes | grep `hostname` | grep " Ready " ; do
   sleep 5s
@@ -51,6 +61,11 @@ echo ""
 echo "Waiting for ArgoCD to start"
 until timeout 1 bash -c "cat < /dev/null > /dev/tcp/$IP/443" ; do
   sleep 5s
+  echo -n .
+done
+echo "Waiting for project"
+until argocd proj list | grep default ; do
+  sleep 1s
   echo -n .
 done
 echo ""
