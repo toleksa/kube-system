@@ -40,6 +40,12 @@ echo $CMD
 echo "argocd app sync argocd-main"
 echo ""
 
+echo "Waiting for ArgoCD to start"
+until timeout 1 bash -c 'cat < /dev/null > /dev/tcp/$IP/443' ; do
+  sleep 5s
+  echo -n .
+done
+echo ""
 eval $CMD
 argocd app sync argocd-main
 
