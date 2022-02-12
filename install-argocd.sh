@@ -21,12 +21,12 @@ kubectl -n argocd patch secret argocd-secret \
     "admin.passwordMtime": "'$(date +%FT%T%Z)'"
   }}'
 
-#argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/python-rest-api.git
+#argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/kube-system.git
 URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml" 
 if curl --output /dev/null --silent --head --fail "$URL"; then
   echo "getting argocd-main.yaml from secret repo"
   curl "$URL" --silent -o argocd/argocd-main.yaml
-  echo "adjusting  metallb pool IP"
+  echo "adjusting metallb pool IP"
   sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" argocd/argocd-main.yaml
 fi
 
