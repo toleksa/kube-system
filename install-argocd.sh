@@ -25,3 +25,19 @@ cat argocd/argocd-main.yaml | kubectl apply -f -
 # remove argocd entry from helm, now it's selfmanaged
 kubectl delete secret -l owner=helm,name=argocd -n argocd
 
+# argo cli
+curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+chmod +x /usr/local/bin/argocd
+
+# argo cli login and credentials
+IP=$(kubectl -n argocd get svc | grep "argocd-server " | gawk '{ print $3 }')
+CMD="argocd login ${IP}:443 --username admin --password password --insecure"
+echo
+echo "to login to argocd cli use this command:"
+echo $CMD
+echo "argocd app sync argocd-main"
+echo ""
+
+eval $CMD
+argocd app sync argocd-main
+
