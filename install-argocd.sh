@@ -23,7 +23,7 @@ kubectl -n argocd patch secret argocd-secret \
 
 #argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/python-rest-api.git
 URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml"
-if curl --output /dev/null --silent --head --fail "$url"; then
+if curl --output /dev/null --silent --head --fail "$URL"; then
   echo "getting argocd-main.yaml from secret repo"
   curl $URL -O argocd/argocd-main.yaml
 fi
