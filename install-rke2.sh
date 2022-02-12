@@ -8,7 +8,9 @@ systemctl start rke2-server.service
 echo "export PATH=\$PATH:/var/lib/rancher/rke2/bin" >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
 
+echo "dupa1"
 . ~/.bashrc
+echo "dupa2"
 
 kubectl apply -f - <<EOF
 apiVersion: helm.cattle.io/v1
