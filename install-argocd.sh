@@ -22,10 +22,13 @@ kubectl -n argocd patch secret argocd-secret \
   }}'
 
 #argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/python-rest-api.git
-wget http://192.168.0.2:8765/`hostname -s`-argocd-values.yaml -O argocd-values.yaml
-sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" argocd-values.yaml
-#kubectl apply -f argocd/argocd-main.yaml -v argocd-values.yaml
-helm install --namespace argocd argocd ./argocd --set-file config=argocd-values.yaml
+URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml"
+if curl --output /dev/null --silent --head --fail "$url"; then
+  echo "getting argocd-main.yaml from secret repo"
+  curl $URL -O argocd/argocd-main.yaml
+fi
+
+kubectl apply -f argocd/argocd-main.yaml
 
 # remove argocd entry from helm, now it's selfmanaged
 kubectl delete secret -l owner=helm,name=argocd -n argocd
