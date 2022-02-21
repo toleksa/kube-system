@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "START install-argo.sh"
+
 . ~/.bashrc
 
 #check if kubectl installed
@@ -81,4 +83,6 @@ kubectl apply -f /tmp/argocd-main.yaml
 kubectl delete secret -l owner=helm,name=argocd -n argocd
 
 argocd app sync argocd-main
+
+echo "END install-argo.sh"
 

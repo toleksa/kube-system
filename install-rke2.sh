@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "START install-rke2.sh"
+
 #install rke2
 curl -sfL https://get.rke2.io | sh -
 systemctl enable rke2-server.service
@@ -26,3 +28,6 @@ spec:
         enabled: true
         type: LoadBalancer
 EOF
+
+echo "END install-rke2.sh"
+

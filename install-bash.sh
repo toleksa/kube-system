@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "START install-bash.sh"
+
 set -euo pipefail
 
 echo "k(){ kubectl -n \${NAMESPACE:-default} \"\$@\"; }" >> ~/.bashrc
@@ -11,4 +13,6 @@ echo "alias kapp='kubectl get app -ALL'" >> ~/.bashrc
 echo "alias kall='kubectl get all -ALL'" >> ~/.bashrc
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
+
+echo "END install-bash.sh"
 

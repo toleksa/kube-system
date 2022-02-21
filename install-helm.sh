@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "START install-helm.sh"
+
 . ~/.bashrc
 
 echo "installing helm"
@@ -11,3 +13,4 @@ helm repo update
 
 helm repo list
 
+echo "END install-helm.sh"
