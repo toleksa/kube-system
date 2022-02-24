@@ -74,6 +74,9 @@ if curl --output /dev/null --silent --head --fail "$URL"; then
   curl "$URL" --silent -o /tmp/argocd-main.yaml
 fi
 
+echo "adjusting domain to hostname"
+sed -i "s/domain: example.com/domain: `hostname -f`/g" /tmp/argocd-main.yaml
+
 echo "adjusting metallb pool IP"
 sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" /tmp/argocd-main.yaml
 
