@@ -7,7 +7,7 @@ spec:
   destinations:
   - namespace: argocd
     server: '*'
-  - namespace: enternal-dns
+  - namespace: external-dns
     server: '*'
   - namespace: kube-system
     server: '*'
