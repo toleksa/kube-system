@@ -67,15 +67,15 @@ until argocd proj list | grep default ; do
 done
 echo ""
 
-#argocd proj create argocd -d https://kubernetes.default.svc,argocd -s https://github.com/toleksa/kube-system.git
 wget -O /tmp/argocd-main.yaml https://raw.githubusercontent.com/toleksa/kube-system/main/argocd/argocd-main.yaml
 URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml" 
 if curl --output /dev/null --silent --head --fail "$URL"; then
   echo "getting argocd-main.yaml from secret repo"
   curl "$URL" --silent -o /tmp/argocd-main.yaml
-  echo "adjusting metallb pool IP"
-  sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" /tmp/argocd-main.yaml
 fi
+
+echo "adjusting metallb pool IP"
+sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" /tmp/argocd-main.yaml
 
 kubectl apply -f /tmp/argocd-main.yaml
 

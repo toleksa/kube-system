@@ -1,3 +1,4 @@
+{{- if .Values.externaldns.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -40,3 +41,4 @@ spec:
     syncOptions:
       - PruneLast=false
       - CreateNamespace=true
+{{- end }}
