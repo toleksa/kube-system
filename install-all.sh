@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -e
 
 curl https://raw.githubusercontent.com/toleksa/kube-system/main/install-rke2.sh | bash
 curl https://raw.githubusercontent.com/toleksa/kube-system/main/install-bash.sh | bash
