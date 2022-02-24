@@ -7,7 +7,7 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: external-dns
-  project: default
+  project: argocd
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: external-dns

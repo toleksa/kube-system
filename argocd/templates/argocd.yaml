@@ -9,7 +9,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  project: default
+  project: argocd
   source:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: '3.33.5'
