@@ -9,6 +9,7 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add helm https://charts.helm.sh/stable
 helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo add longhorn https://charts.longhorn.io
 helm repo update
 
 helm repo list
