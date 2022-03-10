@@ -70,8 +70,14 @@ echo ""
 wget -O /tmp/argocd-main.yaml https://raw.githubusercontent.com/toleksa/kube-system/main/argocd/argocd-main.yaml
 URL="http://192.168.0.2:8765/`hostname -s`-argocd-main.yaml" 
 if curl --output /dev/null --silent --head --fail "$URL"; then
-  echo "getting argocd-main.yaml from secret repo"
+  echo "getting `hostname -s`-argocd-main.yaml from secret repo"
   curl "$URL" --silent -o /tmp/argocd-main.yaml
+else
+  URL="http://192.168.0.2:8765/generic-argocd-main.yaml"
+  if curl --output /dev/null --silent --head --fail "$URL"; then
+    echo "getting generic-argocd-main.yaml from secret repo"
+    curl "$URL" --silent -o /tmp/argocd-main.yaml
+  fi
 fi
 
 echo "adjusting domain to hostname"
