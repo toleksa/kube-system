@@ -2,6 +2,9 @@
 
 echo "START install-rke2.sh"
 
+# hack for stupid ubuntu .bashrc which doesn't work on noninteractive sessions
+[ -z "$PS1" ] && export PS1="> "
+
 #install rke2
 curl -sfL https://get.rke2.io | sh -
 systemctl enable rke2-server.service
