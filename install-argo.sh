@@ -80,11 +80,11 @@ else
   fi
 fi
 
-echo "adjusting domain to hostname"
-sed -i "s/domain: example.com/domain: `hostname -f`/g" /tmp/argocd-main.yaml
+echo "adjusting domain to: ${ARGO_DOMAIN:-`hostname -f`}"
+sed -i "s/domain: example.com/domain: ${ARGO_DOMAIN:-`hostname -f`}/g" /tmp/argocd-main.yaml
 
-echo "adjusting metallb pool IP"
-sed -i "s/127.0.0.1-127.0.0.1/`hostname -I | awk '{print $1"-"$1}'`/" /tmp/argocd-main.yaml
+echo "adjusting metallb pool IP to: ${ARGO_IP:-`hostname -I | awk '{print $1"-"$1}'`}"
+sed -i "s/127.0.0.1-127.0.0.1/${ARGO_IP:-`hostname -I | awk '{print $1"-"$1}'`}/g" /tmp/argocd-main.yaml
 
 kubectl apply -f /tmp/argocd-main.yaml
 
