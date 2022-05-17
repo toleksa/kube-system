@@ -24,6 +24,7 @@ if [ "$MODE" == "server" ]; then
   systemctl enable rke2-server.service
   systemctl start rke2-server.service
 
+# check by: k get helmchartconfig.helm.cattle.io/rke2-ingress-nginx -o yaml
 kubectl apply -f - <<EOF
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
