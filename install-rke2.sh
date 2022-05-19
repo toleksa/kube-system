@@ -42,7 +42,7 @@ echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
 
 echo "PATH:$PATH"
 echo "KUBECONFIG: $KUBECONFIG"
-echo "kubectl: `which kubectl`"
+echo "which kubectl: `which kubectl`"
 
 #check if kubectl installed
 kubectl &> /dev/null
