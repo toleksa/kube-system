@@ -22,7 +22,7 @@ helm repo add argo-cd https://argoproj.github.io/argo-helm
 helm repo update
 
 echo "Waiting for kubernetes to start"
-until kubectl get nodes | grep `hostname` | grep " Ready " ; do
+until kubectl get nodes | grep -i `hostname` | grep " Ready " ; do
   sleep 5s
   echo -n .
 done
