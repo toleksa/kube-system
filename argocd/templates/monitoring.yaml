@@ -10,7 +10,7 @@ spec:
   project: argocd
   source:
     repoURL: 'https://prometheus-community.github.io/helm-charts'
-    targetRevision: '19.0.2'
+    targetRevision: '36.6.2'
     chart: kube-prometheus-stack
 #    repoURL: 'https://github.com/prometheus-community/helm-charts/'
 #    targetRevision: HEAD
