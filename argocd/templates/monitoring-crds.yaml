@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: argocd
   source:
-    repoURL: 'https://github.com/prometheus-community/helm-charts/'
+    repoURL: 'https://github.com/prometheus-community/helm-charts'
     path: charts/kube-prometheus-stack/crds/
     targetRevision: 36.6.2
     directory: 
