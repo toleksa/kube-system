@@ -14,8 +14,6 @@ spec:
     targetRevision: 36.6.2
     directory: 
       recurse: true
-    syncOptions:
-    - Replace=true
   syncPolicy:
     automated:
       prune: true
@@ -23,3 +21,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - PruneLast=false
+      - Replace=true
