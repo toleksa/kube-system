@@ -26,6 +26,10 @@ spec:
           ingress:
             enabled: true
             https: true
+            tls:
+            - hosts:
+              - "argocd.{{ .Values.domain }}"
+              secretName: argocd-cert
             hosts:
             - "argocd.{{ .Values.domain }}"
             annotations:
