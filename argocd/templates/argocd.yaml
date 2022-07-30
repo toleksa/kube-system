@@ -20,7 +20,7 @@ spec:
           enabled: false
         server:
           extraArgs:
-          - --tlsminvers 1.2
+          - --tlsminversion 1.2
           #  - --insecure
           {{- if .Values.argocd.server.ingress.enabled }}
           ingress:
