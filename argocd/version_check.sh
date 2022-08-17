@@ -2,7 +2,7 @@
 
 cd templates
 
-for APP in "argo-cd/argo-cd" "bitnami/external-dns" "longhorn/longhorn" "bitnami/metallb" "monitoring/kube-prometheus-stack"; do
+for APP in "argo-cd/argo-cd" "bitnami/external-dns" "longhorn/longhorn" "bitnami/metallb" "prometheus-community/kube-prometheus-stack"; do
     COLOR='\033[00m'
     SUFFIX=''
     echo "=====$APP"
