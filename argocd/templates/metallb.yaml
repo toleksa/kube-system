@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: metallb
-    targetRevision: 3.0.10
+    targetRevision: 4.0.2
     helm:
       values: |
         configInline:
