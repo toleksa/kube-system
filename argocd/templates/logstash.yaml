@@ -1,0 +1,25 @@
+{{- if .Values.elk.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: logstash
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: elk
+  project: argocd
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    chart: logstash
+    targetRevision: 5.1.2
+    helm:
+      values: |
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=false
+      - CreateNamespace=true
+{{- end }}
