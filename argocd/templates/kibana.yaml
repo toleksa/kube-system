@@ -18,6 +18,10 @@ spec:
         ingress:
           enabled: true
           hostname: "kibana.{{ .Values.domain}}"
+        elasticsearch:
+          hosts:
+          - elasticsearch.elk.svc.cluster.local
+          port: 9200
   syncPolicy:
     automated:
       prune: true
