@@ -15,6 +15,9 @@ spec:
     targetRevision: 10.2.2
     helm:
       values: |
+        ingress:
+          enabled: true
+          hostname: "kibana.{{ .Values.domain}}"
   syncPolicy:
     automated:
       prune: true
