@@ -30,18 +30,18 @@ spec:
                 period: 10s
                 hosts: ["https://127.0.0.1:10250"]
               setup.kibana:
-								host: "kibana.elk.svc.cluster.local:5601"
-							output.logstash:
-								hosts: ["logstash.elk.svc.cluster.local:5044"]
-				      #output.elasticsearch:
-				      #  hosts: '["elasticsearch.elk.svc.cluster.local:9200}"]'
-				      #  #username: '${ELASTICSEARCH_USERNAME}'
-				      #  #password: '${ELASTICSEARCH_PASSWORD}'
-				      #  ssl.enabled: false
-				      #  ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
-							processors:
-							  - add_kubernetes_metadata: ~
-							logging.level: error
+                host: "kibana.elk.svc.cluster.local:5601"
+              output.logstash:
+                hosts: ["logstash.elk.svc.cluster.local:5044"]
+              #output.elasticsearch:
+              #  hosts: '["elasticsearch.elk.svc.cluster.local:9200}"]'
+              #  #username: '${ELASTICSEARCH_USERNAME}'
+              #  #password: '${ELASTICSEARCH_PASSWORD}'
+              #  ssl.enabled: false
+              #  ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
+              processors:
+                - add_kubernetes_metadata: ~
+              logging.level: error
   syncPolicy:
     automated:
       prune: true
