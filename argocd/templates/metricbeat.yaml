@@ -32,8 +32,10 @@ spec:
               setup.kibana:
                 host: "kibana.elk.svc.cluster.local:5601"
               output.logstash:
+                enabled: true
                 hosts: ["logstash.elk.svc.cluster.local:5044"]
-              #output.elasticsearch:
+              output.elasticsearch:
+                enabled: false
               #  hosts: '["elasticsearch.elk.svc.cluster.local:9200}"]'
               #  #username: '${ELASTICSEARCH_USERNAME}'
               #  #password: '${ELASTICSEARCH_PASSWORD}'
