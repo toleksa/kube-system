@@ -16,10 +16,10 @@ spec:
     helm:
       values: |
         deployment:
-				  metricbeatConfig:
-				    metricbeat.yml: |
-				      metricbeat.modules:
-				      - module: kubernetes
+          metricbeatConfig:
+            metricbeat.yml: |
+              metricbeat.modules:
+              - module: kubernetes
 				        enabled: true
 				        metricsets:
 				          - state_node
