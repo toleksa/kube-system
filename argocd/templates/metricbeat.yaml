@@ -20,16 +20,16 @@ spec:
             metricbeat.yml: |
               metricbeat.modules:
               - module: kubernetes
-				        enabled: true
-				        metricsets:
-				          - state_node
-				          - state_deployment
-				          - state_replicaset
-				          - state_pod
-				          - state_container
-				        period: 10s
-				        hosts: ["https://127.0.0.1:10250"]
-							setup.kibana:
+                enabled: true
+                metricsets:
+                  - state_node
+                  - state_deployment
+                  - state_replicaset
+                  - state_pod
+                  - state_container
+                period: 10s
+                hosts: ["https://127.0.0.1:10250"]
+              setup.kibana:
 								host: "kibana.elk.svc.cluster.local:5601"
 							output.logstash:
 								hosts: ["logstash.elk.svc.cluster.local:5044"]
