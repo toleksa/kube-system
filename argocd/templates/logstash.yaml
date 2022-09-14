@@ -19,7 +19,7 @@ spec:
           beats { port => 5044 }
         output: |-
           elasticsearch {
-            hosts => ["localhost:9200"]
+            hosts => ["elasticsearch.elk.svc.cluster.local:9200"]
             manage_template => false
             index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
           }
