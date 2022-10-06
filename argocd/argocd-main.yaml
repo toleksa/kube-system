@@ -51,10 +51,8 @@ spec:
         metallb:
           pools:
           - name: default
-            protocol: layer2
             addresses:
             - 127.0.0.1-127.0.0.1
-            avoid-buggy-ips: true
   syncPolicy:
     automated:
       prune: true
