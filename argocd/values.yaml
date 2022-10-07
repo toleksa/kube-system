@@ -1,0 +1,6 @@
+domain: ""
+externaldns:
+  enabled: false
+elk:
+  enabled: false
+
