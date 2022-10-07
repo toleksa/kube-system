@@ -1,8 +1,10 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
+{{- with (index .Values.metallb.pools 0) }}
 metadata:
-  name: {{ .Values.metallb.pools.name }}
+  name: {{ .name }}
   namespace: metallb-system
 spec:
   addresses:
-  - {{ .Values.metallb.pools.addresses }}
+  - {{ .addresses }}
+{{- end }}
