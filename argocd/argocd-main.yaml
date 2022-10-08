@@ -41,6 +41,9 @@ spec:
                   name: argo-cd
                   url: https://argoproj.github.io/argo-helm
 
+        monitoring:
+          enabled: true
+
         externaldns:
           enabled: false
           rfc2136:
