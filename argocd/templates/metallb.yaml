@@ -14,9 +14,6 @@ spec:
     targetRevision: 4.1.7
     helm:
       values: |
-        configInline:
-          address-pools:
-            {{- toYaml .Values.metallb.pools | nindent 10}}
   syncPolicy:
     automated:
       prune: true
