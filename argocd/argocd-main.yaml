@@ -54,6 +54,8 @@ spec:
         metallb:
           pools:
           - name: default
+            autoAssign: true
+            avoidBuggyIPs: true
             addresses:
             - 127.0.0.1-127.0.0.1
   syncPolicy:
