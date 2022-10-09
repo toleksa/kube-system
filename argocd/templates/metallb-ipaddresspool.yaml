@@ -9,6 +9,6 @@ spec:
   {{- range .addresses }}
   - {{ . }}
   {{- end }}
-  autoAssign: {{ .autoAssign|default 'true' }}
-  avoidBuggyIPs: {{ .avoidBuggyIPs|default 'true' }}
+  autoAssign: {{ .autoAssign | default "true" }}
+  avoidBuggyIPs: {{ .avoidBuggyIPs | default "true" }}
 {{- end }}
