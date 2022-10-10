@@ -1,8 +1,0 @@
-domain: ""
-externaldns:
-  enabled: false
-monitoring:
-  enabled: false
-elk:
-  enabled: false
-

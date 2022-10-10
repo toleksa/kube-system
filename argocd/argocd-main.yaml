@@ -41,9 +41,6 @@ spec:
                   name: argo-cd
                   url: https://argoproj.github.io/argo-helm
 
-        monitoring:
-          enabled: true
-
         externaldns:
           enabled: false
           rfc2136:
@@ -54,10 +51,10 @@ spec:
         metallb:
           pools:
           - name: default
-            autoAssign: true
-            avoidBuggyIPs: true
+            protocol: layer2
             addresses:
             - 127.0.0.1-127.0.0.1
+            avoid-buggy-ips: true
   syncPolicy:
     automated:
       prune: true
