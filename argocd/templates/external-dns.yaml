@@ -31,9 +31,9 @@ spec:
           create: true
           name: external-dns
         metrics:
-          enabled: false
+          enabled: {{ .Values.monitoring.enabled | default "false" }} 
           serviceMonitor:
-            enabled: false
+            enabled: {{ .Values.monitoring.enabled | default "false" }}
   syncPolicy:
     automated:
       prune: true
