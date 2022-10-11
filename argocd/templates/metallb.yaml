@@ -11,12 +11,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: metallb
-    targetRevision: 3.0.10
-    helm:
-      values: |
-        configInline:
-          address-pools:
-            {{- toYaml .Values.metallb.pools | nindent 10}}
+    targetRevision: 4.1.7
   syncPolicy:
     automated:
       prune: true
