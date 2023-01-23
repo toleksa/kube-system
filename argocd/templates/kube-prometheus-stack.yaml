@@ -39,7 +39,6 @@ spec:
             static_configs:
             - targets:
               - external-dns.external-dns:7979
-          customScrapeConfigs:
           - job_name: 'python-rest-api'
             scrape_interval: 30s
             scrape_timeout: 10s
