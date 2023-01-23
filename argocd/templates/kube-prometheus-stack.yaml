@@ -30,23 +30,6 @@ spec:
             enabled: true
             hosts:
             - "prometheus.{{ .Values.domain }}"
-          customScrapeConfigs:
-          - job_name: 'external-dns'
-            scrape_interval: 30s
-            scrape_timeout: 10s
-            metrics_path: /metrics
-            scheme: http
-            static_configs:
-            - targets:
-              - external-dns.external-dns:7979
-          - job_name: 'python-rest-api'
-            scrape_interval: 30s
-            scrape_timeout: 10s
-            metrics_path: /metrics
-            scheme: http
-            static_configs:
-            - targets:
-              - python-rest-api.python-rest-api:5000
 
           prometheusSpec:
             storageSpec:
