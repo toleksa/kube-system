@@ -33,6 +33,7 @@ spec:
 
           prometheusSpec:
             serviceMonitorSelector: {}
+            serviceMonitorSelectorNilUsesHelmValues: false
             storageSpec:
               volumeClaimTemplate:
                 spec:
