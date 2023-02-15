@@ -17,9 +17,7 @@ spec:
       values: |
         sources:
           - ingress
-          - istio-gateway
-          - service
-          - dupa
+          - istio-virtualservice
         provider: rfc2136
         rfc2136:
           host: {{ .Values.externaldns.rfc2136.host }}
