@@ -18,6 +18,7 @@ spec:
         sources:
           - ingress
           - IstioGateway
+          - service
         provider: rfc2136
         rfc2136:
           host: {{ .Values.externaldns.rfc2136.host }}
