@@ -17,7 +17,7 @@ spec:
       values: |
         sources:
           - ingress
-          - VirtualService
+          - IstioGateway
         provider: rfc2136
         rfc2136:
           host: {{ .Values.externaldns.rfc2136.host }}
