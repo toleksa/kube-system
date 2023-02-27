@@ -16,7 +16,7 @@ spec:
     helm:
       values: |
         sources: {{- range .Values.externaldns.sources | default (list "ingress") }}
-        {{.}}{{- end }}
+        {{- .}}{{- end }}
         provider: rfc2136
         rfc2136:
           host: {{ .Values.externaldns.rfc2136.host }}
