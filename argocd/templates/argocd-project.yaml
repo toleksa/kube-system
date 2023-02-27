@@ -19,6 +19,8 @@ spec:
     server: '*'
   - namespace: monitoring
     server: '*'
+  - namespace: istio-system
+    server: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -30,3 +32,4 @@ spec:
   - 'https://prometheus-community.github.io/helm-charts'
   - 'https://github.com/prometheus-community/helm-charts'
   - 'https://helm.elastic.co'
+  - 'https://github.com/istio/istio.git'
