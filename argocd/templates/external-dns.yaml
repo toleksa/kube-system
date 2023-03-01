@@ -15,7 +15,11 @@ spec:
     targetRevision: 6.14.0
     helm:
       values: |
-        sources: {{ .Values.externaldns.sources | default (list "ingress") }}
+        #sources: {{ .Values.externaldns.sources | default (list "ingress") }}
+        sources:
+          - ingress
+          - istio-virtualservice
+          - istio-gateway
         provider: rfc2136
         rfc2136:
           host: {{ .Values.externaldns.rfc2136.host }}
