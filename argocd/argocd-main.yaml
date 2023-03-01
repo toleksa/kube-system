@@ -45,8 +45,6 @@ spec:
             host: 127.0.0.1
             zone: example.com
             tsigSecret: ""
-          sources:
-            - ingress
 
         metallb:
           pools:
