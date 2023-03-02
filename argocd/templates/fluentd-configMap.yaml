@@ -83,7 +83,7 @@ data:
     <match kubernetes.var.log.containers.**python-rest-api**.log>
       @type elasticsearch
       include_tag_key true
-      host "elasticsearch-master-hl.default.svc.cluster.local"
+      host "elasticsearch-master-hl.elk.svc.cluster.local"
       port "9200"
       index_name "python-rest-api-logs"
       <buffer>
@@ -98,7 +98,7 @@ data:
     <match **>
       @type elasticsearch
       include_tag_key true
-      host "elasticsearch-master-hl.default.svc.cluster.local"
+      host "elasticsearch-master-hl.elk.svc.cluster.local"
       port "9200"
       logstash_format true
 
