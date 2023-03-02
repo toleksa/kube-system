@@ -1,0 +1,30 @@
+{{- if .Values.elk.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluentd
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: elk
+  project: argocd
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    chart: fluentd
+    targetRevision: 5.5.16
+    helm:
+      values: |
+        metrics:
+          enabled: {{ .Values.monitoring.enabled }}
+          serviceMonitor:
+            enabled: {{ .Values.monitoring.enabled }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=false
+      - CreateNamespace=true
+{{- end }}
+
