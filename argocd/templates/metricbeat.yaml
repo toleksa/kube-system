@@ -39,7 +39,7 @@ spec:
                 hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: true
-                hosts: '["elasticsearch-master-hl:9200}"]'
+                hosts: '["elasticsearch-master-hl:9200"]'
               #  #username: '${ELASTICSEARCH_USERNAME}'
               #  #password: '${ELASTICSEARCH_PASSWORD}'
               #  ssl.enabled: false
