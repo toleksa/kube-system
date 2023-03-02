@@ -22,13 +22,16 @@ spec:
               - module: kubernetes
                 enabled: true
                 metricsets:
-                  - state_node
-                  - state_deployment
-                  - state_replicaset
-                  - state_pod
-                  - state_container
+                  - node
+                  - deployment
+                  - replicaset
+                  - pod
+                  - container
+                  - system
+                  - volume
                 period: 10s
-                hosts: ["https://127.0.0.1:10250"]
+                host: ${NODE_NAME}
+                hosts: ["https://${NODE_NAME}:10250"]
               setup.kibana:
                 host: "kibana.elk.svc.cluster.local:5601"
               output.logstash:
@@ -36,7 +39,7 @@ spec:
                 hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: false
-              #  hosts: '["elasticsearch.elk.svc.cluster.local:9200}"]'
+                hosts: '["elasticsearch-master-hl:9200}"]'
               #  #username: '${ELASTICSEARCH_USERNAME}'
               #  #password: '${ELASTICSEARCH_PASSWORD}'
               #  ssl.enabled: false
