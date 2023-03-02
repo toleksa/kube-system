@@ -43,7 +43,7 @@ spec:
               #  ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
               processors:
                 - add_kubernetes_metadata: ~
-              logging.level: error
+              logging.level: info
   syncPolicy:
     automated:
       prune: true
