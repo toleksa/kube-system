@@ -62,51 +62,51 @@ data:
       time_format %Y-%m-%dT%H:%M:%S.%NZ
     </source>
 
-    <filter **>
-      @type parser
-      key_name log
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          keep_time_key true
-        </pattern>
-      </parse>
-    </filter>
+#    <filter **>
+#      @type parser
+#      key_name log
+#      <parse>
+#        @type multi_format
+#        <pattern>
+#          format json
+#          time_key time
+#          keep_time_key true
+#        </pattern>
+#      </parse>
+#    </filter>
 
     # enrich with kubernetes metadata
-    <filter kubernetes.**>
-        @type kubernetes_metadata
-    </filter>
+#    <filter kubernetes.**>
+#        @type kubernetes_metadata
+#    </filter>
 
-    <match kubernetes.var.log.containers.**python-rest-api**.log>
-      @type elasticsearch
-      include_tag_key true
-      host elasticsearch-master-hl.elk.svc.cluster.local
-      port "9200"
-      index_name "python-rest-api-logs"
-      <buffer>
-        @type file
-        path /opt/bitnami/fluentd/logs/buffers/java-logs.buffer
-        flush_thread_count 2
-        flush_interval 5s
-      </buffer>
-    </match>
+#    <match kubernetes.var.log.containers.**python-rest-api**.log>
+#      @type elasticsearch
+#      include_tag_key true
+#      host "elasticsearch-master-hl.elk.svc.cluster.local"
+#      port "9200"
+#      index_name "python-rest-api-logs"
+#      <buffer>
+#        @type file
+#        path /opt/bitnami/fluentd/logs/buffers/java-logs.buffer
+#        flush_thread_count 2
+#        flush_interval 5s
+#      </buffer>
+#    </match>
 
     # Send the logs to the standard output
-    <match **>
-      @type elasticsearch
-      include_tag_key true
-      host elasticsearch-master-hl.elk.svc.cluster.local
-      port "9200"
-      logstash_format true
+#    <match **>
+#      @type elasticsearch
+#      include_tag_key true
+#      host "elasticsearch-master-hl.elk.svc.cluster.local"
+#      port "9200"
+#      logstash_format true
 
-      <buffer>
-        @type file
-        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
-        flush_thread_count 2
-        flush_interval 5s
-      </buffer>
-    </match>
+#      <buffer>
+#        @type file
+#        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
+#        flush_thread_count 2
+#        flush_interval 5s
+#      </buffer>
+#    </match>
 
