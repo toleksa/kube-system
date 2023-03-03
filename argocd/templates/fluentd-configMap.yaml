@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fluentd-configMap
+  name: fluentd-configmap
 data:
   fluentd.conf: |
     # Prometheus Exporter Plugin
