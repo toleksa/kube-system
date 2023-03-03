@@ -47,20 +47,20 @@ data:
     #</source>
 
     # Throw the healthcheck to the standard output instead of forwarding it
-    #<match fluentd.healthcheck>
-    #  @type stdout
-    #</match>
+    <match fluentd.healthcheck>
+      @type stdout
+    </match>
 
     # Get the logs from the containers running in the node
-    <source>
-      @type tail
-      path /var/log/containers/*python-rest-api*.log
-      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
-      tag kubernetes.*
-      read_from_head true
-      format json
-      time_format %Y-%m-%dT%H:%M:%S.%NZ
-    </source>
+#    <source>
+#      @type tail
+#      path /var/log/containers/*python-rest-api*.log
+#      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
+#      tag kubernetes.*
+#      read_from_head true
+#      format json
+#      time_format %Y-%m-%dT%H:%M:%S.%NZ
+#    </source>
 
 #    <filter **>
 #      @type parser
