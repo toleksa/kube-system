@@ -16,7 +16,7 @@ data:
       @type tail
       path /var/log/containers/*.log
       # exclude Fluentd logs
-#      exclude_path /var/log/containers/*fluentd*.log
+      exclude_path /var/log/containers/*fluentd*.log
       pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
       tag kubernetes.*
       read_from_head true
