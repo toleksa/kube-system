@@ -19,6 +19,12 @@ spec:
           enabled: {{ .Values.monitoring.enabled }}
           serviceMonitor:
             enabled: {{ .Values.monitoring.enabled }}
+        aggregator:
+          enabled: true
+          configMap: fluentd-aggregator-configmap
+        forwarder:
+          enabled: true
+          configMap: fluentd-forwarder-configmap
   syncPolicy:
     automated:
       prune: true
