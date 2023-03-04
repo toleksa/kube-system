@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fluentd-aggregator-cm
+  name: fluentd-aggregator-configmap
   namespace: elk
 data:
   fluentd.conf: |

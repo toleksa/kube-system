@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fluentd-forwarder-cm
+  name: fluentd-forwarder-configmap
   namespace: elk
 data:
   fluentd.conf: |
