@@ -26,6 +26,9 @@ spec:
         ingest:
           heapSize: 128m
           replicaCount: 1
+        data:
+          heapSize: 1024m
+          replicaCount: 1
   syncPolicy:
     automated:
       prune: true
