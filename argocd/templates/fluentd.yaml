@@ -22,9 +22,11 @@ spec:
         aggregator:
           enabled: true
           configMap: fluentd-aggregator-configmap
+          configMapFiles: {}
         forwarder:
           enabled: true
           configMap: fluentd-forwarder-configmap
+          configMapFiles: {}
   syncPolicy:
     automated:
       prune: true
