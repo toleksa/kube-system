@@ -17,9 +17,15 @@ spec:
       values: |
         global:
           storageClass: longhorn
-        master.heapSize: 512m
-        coordinating.heapSize: 128m
-        ingest.heapSize: 128m
+        master:
+          heapSize: 512m
+          replicaCount: 1
+        coordinating:
+          heapSize: 128m
+          replicaCount: 1
+        ingest:
+          heapSize: 128m
+          replicaCount: 1
   syncPolicy:
     automated:
       prune: true
