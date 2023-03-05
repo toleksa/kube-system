@@ -1,4 +1,4 @@
-{{- if .Values.elk.enabled }}
+{{- if and (.Values.elk.enabled) (.Values.elk.metricbeat.is.disabled) }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
