@@ -30,18 +30,18 @@ data:
       </parse>
     </source>
 
-    <filter **>
-      @type parser
-      key_name log
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          keep_time_key true
-        </pattern>
-      </parse>
-    </filter>
+    #<filter **>
+    #  @type parser
+    #  key_name log
+    #  <parse>
+    #    @type multi_format
+    #    <pattern>
+    #      format json
+    #      time_key time
+    #      keep_time_key true
+    #    </pattern>
+    #  </parse>
+    #</filter>
 
     # enrich with kubernetes metadata
     <filter kubernetes.**>
