@@ -64,6 +64,7 @@ data:
 
 
     # Ignore fluentd own events
+    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
     <match fluent.**>
       @type null
     </match>

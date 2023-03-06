@@ -30,18 +30,18 @@ data:
       </parse>
     </source>
 
-    #<filter **>
-    #  @type parser
-    #  key_name log
-    #  <parse>
-    #    @type multi_format
-    #    <pattern>
-    #      format json
-    #      time_key time
-    #      keep_time_key true
-    #    </pattern>
-    #  </parse>
-    #</filter>
+    <filter **>
+      @type parser
+      key_name log
+      <parse>
+        @type multi_format
+        <pattern>
+          format json
+          time_key time
+          keep_time_key true
+        </pattern>
+      </parse>
+    </filter>
 
     # enrich with kubernetes metadata
     <filter kubernetes.**>
@@ -72,6 +72,7 @@ data:
 
 
     # Ignore fluentd own events
+    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
     <match fluent.**>
       @type null
     </match>
