@@ -64,7 +64,7 @@ data:
       <buffer>
         @type file
         path /opt/bitnami/fluentd/logs/buffers/logs.buffer
-        flush_thread_count 2
+        flush_thread_count 1
         flush_interval 5s
       </buffer>
     </match>
