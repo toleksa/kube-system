@@ -19,58 +19,6 @@ data:
       port 9880
     </source>
 
-
-
-    # Throw the healthcheck to the standard output
-    <match fluentd.healthcheck>
-      @type stdout
-    </match>
-
-
-
-    <match kubernetes.var.log.containers.**python-rest-api**.log>
-      @type elasticsearch
-      include_tag_key true
-      host "elasticsearch-master-hl.elk.svc.cluster.local"
-      port "9200"
-      index_name "python-rest-api"
-      <buffer>
-        @type file
-        path /opt/bitnami/fluentd/logs/buffers/java-logs.buffer
-        flush_thread_count 1
-        flush_interval 5s
-      </buffer>
-    </match>
-
-    # Send the logs to the standard output
-    #<match **>
-    #  @type stdout
-    #</match>
-    # Send the logs to the standard output
-    <match **>
-      @type elasticsearch
-      include_tag_key true
-      host "elasticsearch-master-hl.elk.svc.cluster.local"
-      port "9200"
-      logstash_format true
-      <buffer>
-        @type file
-        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
-        flush_thread_count 1
-        flush_interval 5s
-      </buffer>
-    </match>
-
-
-
-    # Ignore fluentd own events
-    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
-    <match fluent.**>
-      @type null
-    </match>
-
-
-
     # Prometheus Exporter Plugin
     # input plugin that exports metrics
     <source>
@@ -93,4 +41,51 @@ data:
         host ${hostname}
       </labels>
     </source>
+
+
+
+
+    # Throw the healthcheck to the standard output
+    <match fluentd.healthcheck>
+      @type stdout
+    </match>
+
+    # Ignore fluentd own events
+    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
+    <match fluent.**>
+      @type null
+    </match>
+
+    <match kubernetes.var.log.containers.**python-rest-api**.log>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master-hl.elk.svc.cluster.local"
+      port "9200"
+      index_name "python-rest-api"
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/java-logs.buffer
+        flush_thread_count 1
+        flush_interval 5s
+      </buffer>
+    </match>
+
+    # Send the logs to the standard output
+    <match **>
+      @type stdout
+    </match>
+    # Send the logs to the standard output
+    <match **>
+      @type elasticsearch
+      include_tag_key true
+      host "elasticsearch-master-hl.elk.svc.cluster.local"
+      port "9200"
+      logstash_format true
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
+        flush_thread_count 1
+        flush_interval 5s
+      </buffer>
+    </match>
 

@@ -10,75 +10,7 @@ data:
       @type http
       port 9880
     </source>
-
-    # Get the logs from the containers running in the node
-    <source>
-      @type tail
-      path /var/log/containers/*.log
-      # exclude Fluentd logs
-      exclude_path /var/log/containers/*fluentd*.log
-      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
-      tag kubernetes.*
-      read_from_head true
-      <parse>
-        @type multi_format
-        <pattern>
-          format regexp
-          time_format %Y-%m-%dT%H:%M:%S.%N%Z
-          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
-       </pattern>
-      </parse>
-    </source>
-
-    <filter **>
-      @type parser
-      key_name log
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          keep_time_key true
-        </pattern>
-      </parse>
-    </filter>
-
-    # enrich with kubernetes metadata
-    <filter kubernetes.**>
-      @type kubernetes_metadata
-    </filter>
-
-
-
-    # Throw the healthcheck to the standard output instead of forwarding it
-    <match fluentd.healthcheck>
-      @type stdout
-    </match>
-    # Forward all logs to the aggregators
-    <match **>
-      @type forward
-      <server>
-        host fluentd-0.fluentd-headless.elk.svc.cluster.local
-        port 24224
-      </server>
-      <buffer>
-        @type file
-        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
-        flush_thread_count 1
-        flush_interval 5s
-      </buffer>
-    </match>
-
-
-
-    # Ignore fluentd own events
-    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
-    <match fluent.**>
-      @type null
-    </match>
-
-
-
+    
     # Prometheus Exporter Plugin
     # input plugin that exports metrics
     <source>
@@ -106,4 +38,104 @@ data:
         host ${hostname}
       </labels>
     </source>
+
+    # Get the logs from the containers running in the node
+#    <source>
+#      @type tail
+#      path /var/log/containers/*.log
+#      # exclude Fluentd logs
+#      exclude_path /var/log/containers/*fluentd*.log
+#      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
+#      tag kubernetes.*
+#      read_from_head true
+#      <parse>
+#        @type multi_format
+#        <pattern>
+#          format regexp
+#          time_format %Y-%m-%dT%H:%M:%S.%N%Z
+#          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
+#       </pattern>
+#      </parse>
+#    </source>
+
+#    <filter kubernetes.**>
+#      @type parser
+#      key_name log
+#      <parse>
+#        @type multi_format
+#        <pattern>
+#          format json
+#          time_key time
+#          keep_time_key true
+#        </pattern>
+#      </parse>
+#    </filter>
+
+    # enrich with kubernetes metadata
+#    <filter kubernetes.**>
+#      @type kubernetes_metadata
+#    </filter>
+
+    # Get the logs from python-rest-api
+    <source>
+      @type tail
+      path /var/log/containers/*python-rest-api*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-python-rest-api.pos
+      tag python-rest-api.*
+      read_from_head true
+      <parse>
+        @type multi_format
+        <pattern>
+          format regexp
+          time_format %Y-%m-%dT%H:%M:%S.%N%Z
+          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
+       </pattern>
+      </parse>
+    </source>
+
+    <filter python-rest-api.**>
+      @type parser
+      key_name log
+      <parse>
+        @type apache2
+        <pattern>
+          format json
+          time_key time
+          keep_time_key true
+					expression /^(?<host>[^ ]*) [^ ]* (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>(?:[^\"]|\\.)*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>(?:[^\"]|\\.)*)" "(?<agent>(?:[^\"]|\\.)*)")?$/
+					time_format %d/%b/%Y:%H:%M:%S %z
+        </pattern>
+      </parse>
+    </filter>
+
+    # enrich with kubernetes metadata
+    <filter python-rest-api.**>
+      @type kubernetes_metadata
+    </filter>
+
+
+
+    # Throw the healthcheck to the standard output instead of forwarding it
+    <match fluentd.healthcheck>
+      @type stdout
+    </match>
+    # Ignore fluentd own events
+    #0 define <match fluent.**> to capture fluentd logs in top level is deprecated. Use <label @FLUENT_LOG> instead
+    <match fluent.**>
+      @type null
+    </match>
+    # Forward all logs to the aggregators
+    <match **>
+      @type forward
+      <server>
+        host fluentd-0.fluentd-headless.elk.svc.cluster.local
+        port 24224
+      </server>
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
+        flush_thread_count 1
+        flush_interval 5s
+      </buffer>
+    </match>
 
