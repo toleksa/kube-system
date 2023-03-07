@@ -60,18 +60,18 @@ data:
       </parse>
     </source>
 
-    <filter kubernetes.**>
-      @type parser
-      key_name log
-      <parse>
-        @type multi_format
-        <pattern>
-          format json
-          time_key time
-          keep_time_key true
-        </pattern>
-      </parse>
-    </filter>
+    #<filter kubernetes.**>
+    #  @type parser
+    #  key_name log
+    #  <parse>
+    #    @type multi_format
+    #    <pattern>
+    #      format json
+    #      time_key time
+    #      keep_time_key true
+    #    </pattern>
+    #  </parse>
+    #</filter>
 
     # enrich with kubernetes metadata
     <filter kubernetes.**>
@@ -92,25 +92,23 @@ data:
         <pattern>
           format regexp
           time_format %Y-%m-%dT%H:%M:%S.%N%Z
-          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
+          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<request_ip>.*) - - (?<request_time>\[.*\]) "(?<log>.*)" (?<response_code>.*) (?<response_size>.*)/
        </pattern>
       </parse>
     </source>
 
-    <filter python-rest-api.**>
-      @type parser
-      key_name log
-      <parse>
-        @type apache2
-        <pattern>
-          format json
-          time_key time
-          keep_time_key true
-          expression /^(?<host>[^ ]*) [^ ]* (?<user>[^ ]*) \[(?<time>[^\]]*)\] "(?<method>\S+)(?: +(?<path>(?:[^\"]|\\.)*?)(?: +\S*)?)?" (?<code>[^ ]*) (?<size>[^ ]*)(?: "(?<referer>(?:[^\"]|\\.)*)" "(?<agent>(?:[^\"]|\\.)*)")?$/
-          time_format %d/%b/%Y:%H:%M:%S %z
-        </pattern>
-      </parse>
-    </filter>
+    #<filter python-rest-api.**>
+    #  @type parser
+    #  key_name log
+    #  <parse>
+    #    @type multi_format
+    #    <pattern>
+    #      format json
+    #      time_key time
+    #      keep_time_key true
+    #    </pattern>
+    #  </parse>
+    #</filter>
 
     # enrich with kubernetes metadata
     <filter python-rest-api.**>
