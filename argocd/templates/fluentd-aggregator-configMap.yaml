@@ -56,7 +56,7 @@ data:
       @type null
     </match>
 
-    <match kubernetes.var.log.containers.**python-rest-api**.log>
+    <match **python-rest-api**>
       @type elasticsearch
       include_tag_key true
       host "elasticsearch-master-hl.elk.svc.cluster.local"
@@ -71,9 +71,9 @@ data:
     </match>
 
     # Send the logs to the standard output
-    <match **>
-      @type stdout
-    </match>
+    #<match **>
+    #  @type stdout
+    #</match>
     # Send the logs to the standard output
     <match **>
       @type elasticsearch
@@ -81,6 +81,7 @@ data:
       host "elasticsearch-master-hl.elk.svc.cluster.local"
       port "9200"
       logstash_format true
+      index_name "fluentd"
       <buffer>
         @type file
         path /opt/bitnami/fluentd/logs/buffers/logs.buffer

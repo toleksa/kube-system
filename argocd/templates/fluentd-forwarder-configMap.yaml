@@ -39,42 +39,46 @@ data:
       </labels>
     </source>
 
-    # Get the logs from the containers running in the node
-    #<source>
-    #  @type tail
-    #  path /var/log/containers/*.log
-    #  # exclude Fluentd logs
-    #  exclude_path /var/log/containers/*fluentd*.log
-    #  pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
-    #  tag kubernetes.*
-    #  read_from_head true
-    #  <parse>
-    #    @type multi_format
-    #    <pattern>
-    #      format regexp
-    #      time_format %Y-%m-%dT%H:%M:%S.%N%Z
-    #      expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
-    #   </pattern>
-    #  </parse>
-    #</source>
 
-    #<filter kubernetes.**>
-    #  @type parser
-    #  key_name log
-    #  <parse>
-    #    @type multi_format
-    #    <pattern>
-    #      format json
-    #      time_key time
-    #      keep_time_key true
-    #    </pattern>
-    #  </parse>
-    #</filter>
+
+    # Get the logs from the containers running in the node
+    <source>
+      @type tail
+      path /var/log/containers/*.log
+      # exclude Fluentd logs
+      exclude_path /var/log/containers/*fluentd*.log
+      pos_file /opt/bitnami/fluentd/logs/buffers/fluentd-docker.pos
+      tag kubernetes.*
+      read_from_head true
+      <parse>
+        @type multi_format
+        <pattern>
+          format regexp
+          time_format %Y-%m-%dT%H:%M:%S.%N%Z
+          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
+       </pattern>
+      </parse>
+    </source>
+
+    <filter kubernetes.**>
+      @type parser
+      key_name log
+      <parse>
+        @type multi_format
+        <pattern>
+          format json
+          time_key time
+          keep_time_key true
+        </pattern>
+      </parse>
+    </filter>
 
     # enrich with kubernetes metadata
-    #<filter kubernetes.**>
-    #  @type kubernetes_metadata
-    #</filter>
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+    </filter>
+
+
 
     # Get the logs from python-rest-api
     <source>
