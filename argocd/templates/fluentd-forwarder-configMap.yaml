@@ -55,9 +55,9 @@ data:
         <pattern>
           format regexp
           time_format %Y-%m-%dT%H:%M:%S.%N%Z
-          time_key time
+          time_key timestamp
           keep_time_key true
-          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
+          expression /^(?<timestamp>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<log>.*)/
        </pattern>
       </parse>
     </source>
@@ -81,9 +81,9 @@ data:
         <pattern>
           format regexp
           time_format %Y-%m-%dT%H:%M:%S.%N%Z
-          time_key time
+          time_key timestamp
           keep_time_key true
-          expression /^(?<time>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<request_ip>.*) - - (?<request_time>\[.*\]) "(?<log>.*)" (?<response_code>.*) (?<response_size>.*)/
+          expression /^(?<timestamp>.+) (?<stream>stdout|stderr) (?<logtag>.)? (?<request_ip>.*) - - (?<request_time>\[.*\]) "(?<log>.*)" (?<response_code>.*) (?<response_size>.*)/
        </pattern>
       </parse>
     </source>
