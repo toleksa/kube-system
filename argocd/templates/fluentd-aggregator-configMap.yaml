@@ -80,7 +80,7 @@ data:
       include_tag_key true
       host "elasticsearch-master-hl.elk.svc.cluster.local"
       port "9200"
-      index_name "fluentd"
+      index_name "kubernetes"
       <buffer>
         @type file
         path /opt/bitnami/fluentd/logs/buffers/logs.buffer
