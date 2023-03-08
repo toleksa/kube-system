@@ -61,7 +61,6 @@ data:
       include_tag_key true
       host "elasticsearch-master-hl.elk.svc.cluster.local"
       port "9200"
-      logstash_format true
       index_name "python-rest-api"
       <buffer>
         @type file
