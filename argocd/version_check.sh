@@ -3,7 +3,7 @@
 cd templates
 
 for APP in "argo-cd/argo-cd" "bitnami/external-dns" "longhorn/longhorn" "bitnami/metallb" "prometheus-community/kube-prometheus-stack" \
-            "bitnami/logstash" "bitnami/elasticsearch" "bitnami/kibana" "elastic/metricbeat"; do
+            "bitnami/fluentd" "bitnami/elasticsearch" "bitnami/kibana" "elastic/metricbeat" "bitnami/logstash"; do
     COLOR='\033[00m'
     SUFFIX=''
     CHART=`echo $APP | gawk -F"/" '{ print $2 }'`
