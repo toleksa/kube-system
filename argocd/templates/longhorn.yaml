@@ -10,7 +10,7 @@ spec:
   project: argocd
   source:
     repoURL: 'https://charts.longhorn.io'
-    targetRevision: 1.4.0
+    targetRevision: 1.4.1
     chart: longhorn
 #    repoURL: 'https://github.com/longhorn/longhorn/'
 #    targetRevision: HEAD
