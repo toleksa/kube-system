@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: kibana
-    targetRevision: 10.2.18
+    targetRevision: 10.2.17
     helm:
       values: |
         global:                                                                                                                                                                            
