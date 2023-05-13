@@ -5,3 +5,5 @@ monitoring:
   enabled: false
 elk:
   enabled: false
+istio:
+  enabled: false
