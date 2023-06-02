@@ -17,7 +17,7 @@ spec:
 #    targetRevision: HEAD
 #    path: charts/kube-prometheus-stack
     helm:
-      skipCrds: true
+      skipCrds: false
       values: |
         grafana:
           adminPassword: prom-operator
