@@ -25,7 +25,7 @@ spec:
           {{- if .Values.argocd.server.ingress.enabled }}
           ingress:
             enabled: true
-            https: true
+            https: false
             tls:
             - hosts:
               - "argocd.{{ .Values.domain }}"
