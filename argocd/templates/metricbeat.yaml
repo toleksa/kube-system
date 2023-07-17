@@ -1,4 +1,4 @@
-{{- if and (.Values.elk.enabled) (.Values.elk.metricbeat) }}
+{{- if .Values.elk.enabled) }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://helm.elastic.co'
     chart: metricbeat
-    targetRevision: 7.17.3
+    targetRevision: 8.5.1
     helm:
       values: |
         deployment:
@@ -35,11 +35,11 @@ spec:
               setup.kibana:
                 host: "kibana.elk.svc.cluster.local:5601"
               output.logstash:
-                enabled: true
-                hosts: ["logstash.elk.svc.cluster.local:5044"]
+                enabled: false
+                #hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: true
-                hosts: ["elasticsearch-master-hl:9200"]
+                hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
               #  #username: '${ELASTICSEARCH_USERNAME}'
               #  #password: '${ELASTICSEARCH_PASSWORD}'
               #  ssl.enabled: false
