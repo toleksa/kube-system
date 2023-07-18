@@ -1,4 +1,4 @@
-{{- if .Values.elk.enabled) }}
+{{- if .Values.elk.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
