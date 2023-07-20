@@ -54,4 +54,9 @@ spec:
     syncOptions:
       - PruneLast=false
       - CreateNamespace=true
+extraEnvs:
+  - name: NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
 {{- end }}
