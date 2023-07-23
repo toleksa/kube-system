@@ -1,5 +1,4 @@
-#{{- if and (.Values.elk.enabled) (.Values.elk.metricbeat) }}
-{{- if .Values.elk.enabled }}
+{{- if and (.Values.elk.enabled) (.Values.elk.metricbeat) }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -62,3 +61,4 @@ extraEnvs:
 #      fieldRef:
 #        fieldPath: spec.nodeName
 {{- end }}
+

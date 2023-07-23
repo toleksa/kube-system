@@ -6,6 +6,6 @@ monitoring:
 elk:
   enabled: false
   fluentd: false
-  metricbeat: false
+  metricbeat: true
 istio:
   enabled: false
