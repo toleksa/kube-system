@@ -31,7 +31,7 @@ spec:
                   - volume
                 period: 10s
                 host: ${NODE_NAME}
-                hosts: ["https://${NODE_NAME}:10250"]
+                hosts: ["https://192.168.0.118:10250"]
               setup.kibana:
                 host: "kibana.elk.svc.cluster.local:5601"
               output.logstash:
