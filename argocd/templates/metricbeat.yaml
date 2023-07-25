@@ -30,7 +30,7 @@ spec:
                   - system
                   - volume
                 period: 10s
-                host: ${NODE_NAME}
+                host: 192.168.0.118
                 hosts: ["https://192.168.0.118:10250"]
               setup.kibana:
                 host: "kibana.elk.svc.cluster.local:5601"
