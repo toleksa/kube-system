@@ -23,8 +23,6 @@ spec:
                 enabled: true
                 metricsets:
                   - node
-                  - deployment
-                  - replicaset
                   - pod
                   - container
                   - system
