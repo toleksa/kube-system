@@ -18,7 +18,6 @@ spec:
         global:
           storageClass: longhorn
         master:
-          servicenameOverride: elasticsearch-master
           heapSize: 512m
           replicaCount: 1
         coordinating:
