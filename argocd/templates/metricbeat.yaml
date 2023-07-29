@@ -70,8 +70,8 @@ spec:
                 enabled: true
                 #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
                 hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
-                ssl.enabled: true
-                ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
+                ssl.enabled: false
+                #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
                 #username: '${ELASTICSEARCH_USERNAME}'
                 #password: '${ELASTICSEARCH_PASSWORD}'
         deployment:
@@ -93,8 +93,8 @@ spec:
                 hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
                 #username: '${ELASTICSEARCH_USERNAME}'
                 #password: '${ELASTICSEARCH_PASSWORD}'
-                ssl.enabled: true
-                ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
+                ssl.enabled: false
+                #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
 
   syncPolicy:
     automated:
