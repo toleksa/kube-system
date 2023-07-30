@@ -28,10 +28,10 @@ spec:
                   - system
                   - volume
                 period: 10s
-                #host: "${NODE_NAME}"
-                #hosts: ["https://${NODE_NAME}:10250"]
-                host: 192.168.0.118
-                hosts: ["https://192.168.0.118:10250"]
+                host: "${NODE_NAME}"
+                hosts: ["https://${NODE_NAME}:10250"]
+                #host: 192.168.0.118
+                #hosts: ["https://192.168.0.118:10250"]
                 bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
                 ssl.verification_mode: "none"
                 processors:
@@ -68,8 +68,8 @@ spec:
                 #hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: true
-                #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
-                hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
+                hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
+                #hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
                 ssl.enabled: false
                 #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
                 #username: '${ELASTICSEARCH_USERNAME}'
@@ -109,5 +109,7 @@ extraEnvs:
 #    valueFrom:
 #      fieldRef:
 #        fieldPath: spec.nodeName
+  - name: ELASTICSEARCH_HOSTS
+    value: elasticsearch-master-hl.elk.svc.cluster.local:9200
 {{- end }}
 
