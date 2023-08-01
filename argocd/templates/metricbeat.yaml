@@ -121,13 +121,5 @@ spec:
     syncOptions:
       - PruneLast=false
       - CreateNamespace=true
-extraEnvs:
-  - name: NODE_NAME
-    value: 192.168.0.118
-#    valueFrom:
-#      fieldRef:
-#        fieldPath: spec.nodeName
-  - name: ELASTICSEARCH_HOSTS
-    value: elasticsearch-master-hl.elk.svc.cluster.local:9200
 {{- end }}
 
