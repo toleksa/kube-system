@@ -15,17 +15,13 @@ spec:
     targetRevision: 7.17.3
     helm:
       values: |
+        extraEnvs:
+        - name: NODE_NAME
+          value: 192.168.0.118
+        - name: ELASTICSEARCH_HOSTS
+          value: elasticsearch-master-hl.elk.svc.cluster.local:9200
         daemonset:
           enabled: true
-          extraEnvs:
-          - name: NODE_NAME
-            value: 192.168.0.118
-        #    valueFrom:
-        #      fieldRef:
-        #        fieldPath: spec.nodeName
-          - name: ELASTICSEARCH_HOSTS
-            value: elasticsearch-master-hl.elk.svc.cluster.local:9200
-          metricbeatConfig:
             metricbeat.yml: |
               metricbeat.modules:
               - module: kubernetes
@@ -85,14 +81,6 @@ spec:
                 #password: '${ELASTICSEARCH_PASSWORD}'
         deployment:
           enabled: true
-          extraEnvs:
-          - name: NODE_NAME
-            value: 192.168.0.118
-        #    valueFrom:
-        #      fieldRef:
-        #        fieldPath: spec.nodeName
-          - name: ELASTICSEARCH_HOSTS
-            value: elasticsearch-master-hl.elk.svc.cluster.local:9200
           metricbeatConfig:
             metricbeat.yml: |
               metricbeat.modules:
