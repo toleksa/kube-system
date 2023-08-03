@@ -22,6 +22,7 @@ spec:
           value: elasticsearch-master-hl.elk.svc.cluster.local:9200
         daemonset:
           enabled: true
+          metricbeatConfig:
             metricbeat.yml: |
               metricbeat.modules:
               - module: kubernetes
