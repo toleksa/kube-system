@@ -74,8 +74,8 @@ spec:
                 #hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: true
-                hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
-                #hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
+                #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
+                hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
                 ssl.enabled: false
                 #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
                 #username: '${ELASTICSEARCH_USERNAME}'
@@ -96,12 +96,13 @@ spec:
                 period: 10s
                 hosts: ["${KUBE_STATE_METRICS_HOSTS}"]
               output.elasticsearch:
+                enabled: true
                 #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
                 hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
-                #username: '${ELASTICSEARCH_USERNAME}'
-                #password: '${ELASTICSEARCH_PASSWORD}'
                 ssl.enabled: false
                 #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
+                #username: '${ELASTICSEARCH_USERNAME}'
+                #password: '${ELASTICSEARCH_PASSWORD}'
 
   syncPolicy:
     automated:
