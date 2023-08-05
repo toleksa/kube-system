@@ -1,4 +1,5 @@
 {{- if and (.Values.elk.enabled) (.Values.elk.metricbeat) }}
+#TODO: brocken as fuck -> see extraEnvs
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,11 +16,11 @@ spec:
     targetRevision: 7.17.3
     helm:
       values: |
-        extraEnvs:
-        - name: NODE_NAME
-          value: 192.168.0.118
-        - name: ELASTICSEARCH_HOSTS
-          value: elasticsearch-master-hl.elk.svc.cluster.local:9200
+#        extraEnvs:
+#        - name: NODE_NAME
+#          value: 192.168.0.118
+#        - name: ELASTICSEARCH_HOSTS
+#          value: elasticsearch-master-hl.elk.svc.cluster.local:9200
         daemonset:
           enabled: true
           metricbeatConfig:

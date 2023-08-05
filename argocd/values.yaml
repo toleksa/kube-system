@@ -5,7 +5,7 @@ monitoring:
   enabled: false
 elk:
   enabled: false
-  fluentd: false
-  metricbeat: true
+  fluentd: true
+  metricbeat: false
 istio:
   enabled: false
