@@ -15,7 +15,7 @@ spec:
     targetRevision: 10.2.17
     helm:
       values: |
-        global:                                                                                                                                                                            
+        global: 
           storageClass: longhorn 
         ingress:
           enabled: true
@@ -24,6 +24,8 @@ spec:
           hosts:
           - elasticsearch.elk.svc.cluster.local
           port: 9200
+        savedObjects:
+          urls: https://raw.githubusercontent.com/toleksa/kube-system/main/argocd/files/metricbeat-kubernetes.ndjson
   syncPolicy:
     automated:
       prune: true
