@@ -25,7 +25,8 @@ spec:
           - elasticsearch.elk.svc.cluster.local
           port: 9200
         savedObjects:
-          urls: https://raw.githubusercontent.com/toleksa/kube-system/main/argocd/files/metricbeat-kubernetes.ndjson
+          urls:
+          - https://raw.githubusercontent.com/toleksa/kube-system/main/argocd/files/metricbeat-kubernetes.ndjson
   syncPolicy:
     automated:
       prune: true
