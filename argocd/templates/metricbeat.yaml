@@ -1,5 +1,4 @@
 {{- if and (.Values.elk.enabled) (.Values.elk.metricbeat) }}
-#TODO: brocken as fuck -> see extraEnvs
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -16,11 +15,6 @@ spec:
     targetRevision: 7.17.3
     helm:
       values: |
-#        extraEnvs:
-#        - name: NODE_NAME
-#          value: 192.168.0.118
-#        - name: ELASTICSEARCH_HOSTS
-#          value: elasticsearch-master-hl.elk.svc.cluster.local:9200
         daemonset:
           enabled: true
           metricbeatConfig:
@@ -35,10 +29,8 @@ spec:
                   - system
                   - volume
                 period: 10s
-                #host: "${NODE_NAME}"
-                #hosts: ["https://${NODE_NAME}:10250"]
-                host: 192.168.0.118
-                hosts: ["https://192.168.0.118:10250"]
+                host: "${NODE_NAME}"
+                hosts: ["https://${NODE_NAME}:10250"]
                 bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
                 ssl.verification_mode: "none"
                 processors:
@@ -72,10 +64,8 @@ spec:
                 host: "kibana.elk.svc.cluster.local:5601"
               output.logstash:
                 enabled: false
-                #hosts: ["logstash.elk.svc.cluster.local:5044"]
               output.elasticsearch:
                 enabled: true
-                #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
                 hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
                 ssl.enabled: false
                 #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
@@ -98,7 +88,6 @@ spec:
                 hosts: ["${KUBE_STATE_METRICS_HOSTS}"]
               output.elasticsearch:
                 enabled: true
-                #hosts: '["https://${ELASTICSEARCH_HOSTS:elasticsearch-master:9200}"]'
                 hosts: ["elasticsearch-master-hl.elk.svc.cluster.local:9200"]
                 ssl.enabled: false
                 #ssl.certificate_authorities: ["/usr/share/metricbeat/certs/ca.crt"]
