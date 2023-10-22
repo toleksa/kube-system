@@ -69,6 +69,8 @@ spec:
         enabled: true
         type: LoadBalancer
 EOF
+while ! `kubectl -n kube-system get ValidatingWebhookConfiguration rke2-ingress-nginx-admission &>> /dev/null` ; do echo -n . ; sleep 1s ; done
+kubectl delete -A ValidatingWebhookConfiguration rke2-ingress-nginx-admission
 fi
 
 echo "END install-rke2.sh"
