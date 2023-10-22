@@ -4,15 +4,20 @@ echo "START install-bash.sh"
 
 set -euo pipefail
 
-echo "k(){ kubectl -n \${NAMESPACE:-default} \"\$@\"; }" >> ~/.bashrc
-echo "ns(){ export NAMESPACE=\"\$1\"; }" >> ~/.bashrc
-echo "prompt(){ PS1='\[\033[01;31m\]\u@\h\[\033[00m\](\${NAMESPACE:--}):\[\033[01;34m\]\w\[\033[00m\]\\$ ' ; }" >> ~/.bashrc
-echo "PROMPT_COMMAND=prompt" >> ~/.bashrc
-echo "alias king='kubectl get ingress -A'" >> ~/.bashrc
-echo "alias kapp='kubectl get applications.argoproj.io -A'" >> ~/.bashrc
-echo "alias kall='kubectl get all -A'" >> ~/.bashrc
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-echo 'complete -F __start_kubectl k' >>~/.bashrc
+cat <<'EOF' >> ~/.bashrc
+prompt(){ PS1='\[\033[01;31m\]\u@\h\[\033[00m\]($(kubectl config view --minify | grep namespace | cut -d" " -f6)):\[\033[01;34m\]\w\[\033[00m\]\$ ' ; }
+PROMPT_COMMAND=prompt
+alias k='kubectl'
+alias king='kubectl get ingress -A'
+alias kapp='kubectl get applications.argoproj.io -A'
+alias kall='kubectl get all -A'
+source <(kubectl completion bash)
+complete -F __start_kubectl k
+
+alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
+alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
+EOF
+
 
 echo "END install-bash.sh"
 
