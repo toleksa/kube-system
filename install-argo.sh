@@ -30,7 +30,7 @@ echo ""
 kubectl get nodes
 echo ""
 
-helm install --create-namespace --namespace argocd argocd argo-cd/argo-cd
+helm install --create-namespace --namespace argocd argocd argo-cd/argo-cd --version 5.46.8
 
 # setting credentials to admin/password <- for simplicity of example, I know it's uglyyy
 # bcrypt(password)=$2a$10$rRyBsGSHK6.uc8fntPwVIuLVHgsAhAX7TcdrqW/RADU0uh7CaChLa
