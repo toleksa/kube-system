@@ -21,6 +21,8 @@ spec:
     server: '*'
   - namespace: istio-system
     server: '*'
+  - namespace: neuvector
+    server: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -33,3 +35,4 @@ spec:
   - 'https://github.com/prometheus-community/helm-charts'
   - 'https://helm.elastic.co'
   - 'https://github.com/istio/istio.git'
+  - 'https://neuvector.github.io/neuvector-helm/'
