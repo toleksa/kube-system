@@ -9,3 +9,5 @@ elk:
   metricbeat: true
 istio:
   enabled: false
+neuvector:
+  enabled: false

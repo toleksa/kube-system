@@ -1,0 +1,41 @@
+{{- if .Values.neuvector.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: neuvector
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: neuvector
+  project: argocd
+  source:
+    repoURL: 'https://neuvector.github.io/neuvector-helm/'
+    chart: core
+    targetRevision: 2.6.4
+    helm:
+      values: |
+        k3s:
+          enabled: true
+        controller:
+          replicas: 1
+        cve:
+          scanner:
+            replicas: 1
+        manager:
+          ingress:
+            enabled: true
+            host: "neuvector.{{ .Values.domain}}"
+            annotations:
+              #cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+              #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            tls: false
+            #secretName: neuvector-tls-secret
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=false
+      - CreateNamespace=true
+{{- end }}
