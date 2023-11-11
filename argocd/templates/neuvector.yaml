@@ -23,6 +23,8 @@ spec:
           scanner:
             replicas: 1
         manager:
+          svc:
+            type: ClusterIP
           ingress:
             enabled: true
             host: "neuvector.{{ .Values.domain}}"
