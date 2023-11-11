@@ -30,7 +30,7 @@ spec:
               #cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
               nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
             tls: true
-            #secretName: neuvector-tls-secret
+            secretName: neuvector-tls-secret
   syncPolicy:
     automated:
       prune: true
