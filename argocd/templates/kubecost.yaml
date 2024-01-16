@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://kubecost.github.io/cost-analyzer/'
     chart: cost-analyzer
-    targetRevision: 1.108
+    targetRevision: 1.108.1
     helm:
       values: |
         k3s:
