@@ -19,11 +19,16 @@ spec:
           enabled: true
           hosts:
           - "kubecost.{{ .Values.domain}}"
+        persistentVolume:
+          size: 5Gi
+          dbSize: 5Gi
         prometheus:
           nodeExporter:
             service:
               hostPort: 9101
               servicePort: 9101
+          persistentVolume:
+            size: 5Gi
   syncPolicy:
     automated:
       prune: true
