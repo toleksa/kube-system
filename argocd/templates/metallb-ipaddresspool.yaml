@@ -1,6 +1,5 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
-{{- with (index .Values.metallb.pools 0) }}
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -8,10 +7,13 @@ metadata:
   name: "metallb-pool-{{ .name }}"
   namespace: metallb-system
 spec:
+  {{- if .addresses }}
+  {{- with (index .Values.metallb.pools 0) }}
   addresses:
-  {{- range .addresses }}
+    {{- range .addresses }}
   - {{ . }}
+    {{- end }}
+  {{- end }}
   {{- end }}
   autoAssign: {{ .autoAssign | default "true" }}
   avoidBuggyIPs: {{ .avoidBuggyIPs | default "true" }}
-{{- end }}

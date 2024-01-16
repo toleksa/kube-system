@@ -1,6 +1,12 @@
 domain: ""
+argocd:
+  server:
+    ingress:
+      enabled: false
 externaldns:
   enabled: false
+metallb:
+  pools: []
 monitoring:
   enabled: false
 elk:
@@ -9,5 +15,11 @@ elk:
   metricbeat: true
 istio:
   enabled: false
+longhorn:
+  defaultClassReplicaCount: 1
+  ingress:
+    enabled: false
 neuvector:
+  enabled: false
+kubecost:
   enabled: false
