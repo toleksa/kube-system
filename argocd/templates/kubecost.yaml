@@ -1,4 +1,4 @@
-{{- if .Values.neuvector.enabled }}
+{{- if .Values.kubecost.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,25 +15,20 @@ spec:
     targetRevision: 1.108.1
     helm:
       values: |
-        k3s:
+        ingress:
           enabled: true
-        controller:
-          replicas: 1
-        cve:
-          scanner:
-            replicas: 1
-        manager:
-          svc:
-            type: ClusterIP
+          hosts:
+          - "kubecost.{{ .Values.domain}}"
+        prometheus:
+          nodeExporter:
+            service:
+              hostPort: 9101
+              servicePort: 9101
+        grafana:
           ingress:
             enabled: true
-            host: "neuvector.{{ .Values.domain}}"
-            annotations:
-              #cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
-              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-              #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-            tls: true
-            #secretName: neuvector-tls-secret
+            hosts:
+            - "grafana.kubecost.{{ .Values.domain}}"
   syncPolicy:
     automated:
       prune: true
