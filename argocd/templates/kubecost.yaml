@@ -24,11 +24,6 @@ spec:
             service:
               hostPort: 9101
               servicePort: 9101
-        grafana:
-          ingress:
-            enabled: true
-            hosts:
-            - "grafana.kubecost.{{ .Values.domain}}"
   syncPolicy:
     automated:
       prune: true
