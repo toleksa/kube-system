@@ -23,6 +23,8 @@ spec:
     server: '*'
   - namespace: neuvector
     server: '*'
+  - namespace: kubecost
+    server: '*'
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -36,3 +38,4 @@ spec:
   - 'https://helm.elastic.co'
   - 'https://github.com/istio/istio.git'
   - 'https://neuvector.github.io/neuvector-helm/'
+  - 'https://kubecost.github.io/cost-analyzer/'
