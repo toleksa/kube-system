@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://prometheus-community.github.io/helm-charts'
     chart: kube-prometheus-stack
-    targetRevision: 48.1.1
+    targetRevision: 55.11.0
 #    repoURL: 'https://github.com/prometheus-community/helm-charts/'
 #    targetRevision: HEAD
 #    path: charts/kube-prometheus-stack
