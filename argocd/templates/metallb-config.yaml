@@ -1,19 +1,33 @@
 {{- if .Values.metallb.pools }}
+  {{- range .Values.metallb.pools }}
+---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
-{{- with (index .Values.metallb.pools 0) }}
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "-6"
-  name: "metallb-pool-{{ .name }}"
+  name: "{{ .name }}"
   namespace: metallb-system
 spec:
   addresses:
     {{- range .addresses }}
-  - {{ . }}
+  -   {{ . }}
     {{- end }}
   autoAssign: {{ .autoAssign | default "true" }}
   avoidBuggyIPs: {{ .avoidBuggyIPs | default "true" }}
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: "{{ .name }}"
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - "{{ .name }}"
+  #nodeSelectors:
+  #- matchLabels:
+  #    kubernetes.io/os: linux
+  {{- end }}
 {{- end }}
-{{- end }}
+
