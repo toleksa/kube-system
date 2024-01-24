@@ -16,6 +16,7 @@ elk:
 istio:
   enabled: false
 longhorn:
+  enabled: true
   defaultClassReplicaCount: 1
   ingress:
     enabled: false
