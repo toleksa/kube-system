@@ -1,4 +1,4 @@
-domain: ""
+domain: "example.com"
 argocd:
   server:
     ingress:
@@ -17,7 +17,6 @@ istio:
   enabled: false
 longhorn:
   enabled: true
-  defaultClassReplicaCount: 1
   ingress:
     enabled: false
 neuvector:

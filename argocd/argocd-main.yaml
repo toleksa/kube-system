@@ -17,9 +17,14 @@ spec:
         domain: example.com
 
         longhorn:
-          defaultClassReplicaCount: 1
+          enabled: true
+          persistence:
+            defaultClassReplicaCount: 1
           ingress:
-            enabled: false
+            enabled: true
+            host: "longhorn.{{ .Values.domain}}"
+          defaultSettings:
+            guaranteedInstanceManagerCPU: 1
 
         argocd:
           dex:
