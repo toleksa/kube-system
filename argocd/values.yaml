@@ -21,9 +21,9 @@ longhorn:
     enabled: false
   persistence:
     defaultClassReplicaCount: 1
-  #instance-manager cpu request (x% * all_cpus -> 0.25 and 4 cpu giver 10mi)
+  #instance-manager cpu request (x% * all_cpus -> 0.25 and 4 cpu giver 40mi)
   defaultSettings:
-    guaranteedInstanceManagerCPU: 0.25
+    guaranteedInstanceManagerCPU: 1
   #fix for https://github.com/longhorn/charts/pull/126
   helmPreUpgradeCheckerJob:
     enabled: false
