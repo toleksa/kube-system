@@ -16,9 +16,6 @@ spec:
     repoURL: 'https://charts.longhorn.io'
     targetRevision: 1.5.3
     chart: longhorn
-#    repoURL: 'https://github.com/longhorn/longhorn/'
-#    targetRevision: HEAD
-#    path: deploy
     helm:
       values: |
 {{ if .Values.longhorn }}{{ toYaml .Values.longhorn | indent 8 }}{{- end }}

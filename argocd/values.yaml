@@ -19,6 +19,14 @@ longhorn:
   enabled: true
   ingress:
     enabled: false
+  persistence:
+    defaultClassReplicaCount: 1
+  #instance-manager cpu request (x% * all_cpus -> 0.25 and 4 cpu giver 10mi)
+  defaultSettings:
+    guaranteedInstanceManagerCPU: 0.25
+  #fix for https://github.com/longhorn/charts/pull/126
+  helmPreUpgradeCheckerJob:
+    enabled: false
 neuvector:
   enabled: false
 kubecost:
