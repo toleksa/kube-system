@@ -30,8 +30,9 @@ spec:
             service:
               hostPort: 9101
               servicePort: 9101
-          persistentVolume:
-            size: 5Gi
+          server:
+            persistentVolume:
+              size: 5Gi
   syncPolicy:
     automated:
       prune: true
