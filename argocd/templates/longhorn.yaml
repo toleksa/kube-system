@@ -27,6 +27,8 @@ spec:
           enabled: true
           host: "longhorn.{{ .Values.domain}}"
         {{- end }}
+        defaultSettings:
+          guaranteedInstanceManagerCPU: 0.1
   syncPolicy:
     automated:
       prune: true
