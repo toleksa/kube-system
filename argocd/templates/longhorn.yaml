@@ -18,6 +18,17 @@ spec:
     chart: longhorn
     helm:
       values: |
+        ingress:
+          enabled: true
+          host: "longhorn.{{ .Values.domain}}"
+        persistence:
+          defaultClassReplicaCount: 1
+        defaultSettings:
+          #instance-manager cpu request (x% * all_cpus -> x=1 and 4 cpu gives 40mi)
+          guaranteedInstanceManagerCPU: 0
+        #fix for https://github.com/longhorn/charts/pull/126
+        helmPreUpgradeCheckerJob:
+          enabled: false
 {{ if .Values.longhorn }}{{ toYaml .Values.longhorn | indent 8 }}{{- end }}
   syncPolicy:
     automated:

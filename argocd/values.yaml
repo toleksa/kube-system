@@ -1,14 +1,10 @@
 domain: "example.com"
-argocd:
-  server:
-    ingress:
-      enabled: false
 externaldns:
   enabled: false
 metallb:
   pools: []
 monitoring:
-  enabled: false
+  enabled: true
 elk:
   enabled: false
   fluentd: true
@@ -17,17 +13,7 @@ istio:
   enabled: false
 longhorn:
   enabled: true
-  ingress:
-    enabled: false
-  persistence:
-    defaultClassReplicaCount: 1
-  #instance-manager cpu request (x% * all_cpus -> x=1 and 4 cpu gives 40mi)
-  defaultSettings:
-    guaranteedInstanceManagerCPU: 0
-  #fix for https://github.com/longhorn/charts/pull/126
-  helmPreUpgradeCheckerJob:
-    enabled: false
 neuvector:
-  enabled: false
+  enabled: true
 kubecost:
-  enabled: false
+  enabled: true
