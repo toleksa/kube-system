@@ -1,17 +1,38 @@
 #!/bin/bash
 
-cd templates
+APPS="
+argo-cd/argo-cd argo-cd
+bitnami/external-dns external-dns
+longhorn/longhorn longhorn
+bitnami/metallb metallb
+prometheus-community/kube-prometheus-stack monitoring
+kubecost/cost-analyzer kubecost
+neuvector/core neuvector
 
-for APP in "argo-cd/argo-cd" "bitnami/external-dns" "longhorn/longhorn" "bitnami/metallb" "prometheus-community/kube-prometheus-stack" \
-            "bitnami/fluentd" "bitnami/elasticsearch" "bitnami/kibana" "elastic/metricbeat" "bitnami/logstash"; do
-    COLOR='\033[00m'
-    SUFFIX=''
-    CHART=`echo $APP | gawk -F"/" '{ print $2 }'`
-    HELM_VER=`helm search repo $APP | tail -n 1 | gawk '{ print $2 }'`
-    GIT_VER=`grep targetRevision ${CHART}.yaml | grep -v \# | gawk '{ print $2 }'`
-    if [ "$HELM_VER" != "$GIT_VER" ]; then
-      COLOR='\033[01;31m'
-      SUFFIX="!!"
-    fi
-    echo -e "$APP ${COLOR}${HELM_VER}\033[00m $GIT_VER $SUFFIX"
-done
+bitnami/fluentd fluentd
+bitnami/elasticsearch elasticsearch
+bitnami/kibana kibana
+elastic/metricbeat metricbeat
+bitnami/logstash logstash
+"
+
+cd templates
+while read -r REPO MANIFEST; do
+  if [ -z "$REPO" ] && [ -z "$MANIFEST" ]; then
+    echo ""
+    continue
+  fi
+
+  COLOR='\033[00m'
+  SUFFIX=''
+
+  REPO_VER=$(helm search repo "$REPO" | tail -n 1 | gawk '{ print $2 }')
+  GIT_VER=$(grep targetRevision "${MANIFEST}.yaml" | grep -v \# | gawk '{ print $2 }')
+
+  if [ "$REPO_VER" != "$GIT_VER" ]; then
+    COLOR='\033[01;31m'
+    SUFFIX="!!"
+  fi
+  echo -e "$REPO ${COLOR}${REPO_VER}\033[00m $GIT_VER $SUFFIX"
+done <<< "$APPS"
+
