@@ -16,6 +16,7 @@ elastic/metricbeat metricbeat
 bitnami/logstash logstash
 "
 
+helm repo update &> /dev/null
 cd templates
 while read -r REPO MANIFEST; do
   if [ -z "$REPO" ] && [ -z "$MANIFEST" ]; then
