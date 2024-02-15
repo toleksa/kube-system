@@ -38,6 +38,7 @@ fi
   
 echo "export PATH=\$PATH:/var/lib/rancher/rke2/bin" >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> ~/.bashrc
+echo "export CONTAINER_RUNTIME_ENDPOINT=unix:///run/k3s/containerd/containerd.sock" >> ~/.bashrc
 . ~/.bashrc
 
 echo "PATH:$PATH"
