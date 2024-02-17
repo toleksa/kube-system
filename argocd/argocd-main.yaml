@@ -38,6 +38,11 @@ spec:
             addresses:
             - 127.0.0.1-127.0.0.1
             avoid-buggy-ips: true
+
+        kubecost:
+          enabled: false
+        neuvector:
+          enabled: false
   syncPolicy:
     automated:
       prune: true
