@@ -14,6 +14,6 @@ istio:
 longhorn:
   enabled: true
 neuvector:
-  enabled: true
+  enabled: false
 kubecost:
-  enabled: true
+  enabled: false
