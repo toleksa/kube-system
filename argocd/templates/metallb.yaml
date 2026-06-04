@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: metallb
-    targetRevision: 4.11.0
+    targetRevision: 6.4.22
   syncPolicy:
     automated:
       prune: true
