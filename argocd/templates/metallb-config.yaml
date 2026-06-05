@@ -1,4 +1,4 @@
-{{- if .Values.metallb.pools }}
+{{- if and .Values.metallb.enabled .Values.metallb.pools }}
   {{- range .Values.metallb.pools }}
 ---
 apiVersion: metallb.io/v1beta1
