@@ -16,6 +16,7 @@ spec:
     targetRevision: 6.4.22
     helm:
       values: |
+        global.security.allowInsecureImages: true
         controller:
           image:
             registry: 'bitnamilegacy/metallb-controller'
