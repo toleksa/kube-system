@@ -32,6 +32,7 @@ spec:
             tsigSecret: ""
 
         metallb:
+          enabled: true
           pools:
           - name: default
             protocol: layer2
