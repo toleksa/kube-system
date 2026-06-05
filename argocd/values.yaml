@@ -2,6 +2,7 @@ domain: "example.com"
 externaldns:
   enabled: false
 metallb:
+  enabled: true
   pools: []
 monitoring:
   enabled: true
