@@ -14,6 +14,15 @@ spec:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: metallb
     targetRevision: 6.4.22
+    helm:
+      values: |
+        controller:
+          image:
+            registry: 'bitnamilegacy/metallb-controller'
+          speaker:
+            image:
+              registry: 'bitnamilegacy/metallb-controller'
+
   syncPolicy:
     automated:
       prune: true
