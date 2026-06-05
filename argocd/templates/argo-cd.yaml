@@ -25,7 +25,7 @@ spec:
           domain: "argocd.{{ .Values.domain }}"
         {{- if .Values.argocd.server.ingress.enabled }}
         certificate:
-          enable: true
+          enable: false
         server:
           #extraArgs:
           #- --tlsminversion "1.2"
@@ -33,16 +33,13 @@ spec:
           ingress:
             enabled: true
             #https: true
-            tls: true
+            tls: false
             #- hosts:
             #  - "argocd.{{ .Values.domain }}"
             #  secretName: argocd-cert
             #hosts:
             #- "argocd.{{ .Values.domain }}"
             annotations:
-              nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-              nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         {{- end }}
   syncPolicy:
     automated:
