@@ -21,11 +21,10 @@ spec:
             allowInsecureImages: true
         controller:
           image:
-            registry: 'bitnamilegacy/metallb-controller'
-          speaker:
-            image:
-              registry: 'bitnamilegacy/metallb-controller'
-
+            repository: 'bitnamilegacy/metallb-controller'
+        speaker:
+          image:
+            repository: 'bitnamilegacy/metallb-controller'
   syncPolicy:
     automated:
       prune: true
