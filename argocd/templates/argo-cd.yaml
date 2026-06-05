@@ -21,24 +21,29 @@ spec:
       values: |
         dex:
           enabled: false
+        global:
+          domain: "argocd.{{ .Values.domain }}"
+        {{- if .Values.argocd.server.ingress.enabled }}
+        certificate:
+          enable: true
         server:
           #extraArgs:
           #- --tlsminversion "1.2"
           #- --insecure
-          {{- if .Values.argocd.server.ingress.enabled }}
           ingress:
             enabled: true
-            https: true
-            tls:
-            - hosts:
-              - "argocd.{{ .Values.domain }}"
-              secretName: argocd-cert
-            hosts:
-            - "argocd.{{ .Values.domain }}"
+            #https: true
+            tls: true
+            #- hosts:
+            #  - "argocd.{{ .Values.domain }}"
+            #  secretName: argocd-cert
+            #hosts:
+            #- "argocd.{{ .Values.domain }}"
             annotations:
+              nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
               nginx.ingress.kubernetes.io/ssl-passthrough: "true"
               nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          {{- end }}
+        {{- end }}
   syncPolicy:
     automated:
       prune: true
