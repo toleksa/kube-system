@@ -24,6 +24,9 @@ spec:
         global:
           domain: "argocd.{{ .Values.domain }}"
         {{- if .Values.argocd.server.ingress.enabled }}
+        configs:
+          params:
+            server.insecure: true
         certificate:
           enable: false
         server:
