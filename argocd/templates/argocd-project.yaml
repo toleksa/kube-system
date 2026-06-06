@@ -41,4 +41,4 @@ spec:
   - 'https://helm.elastic.co'
   - 'https://github.com/istio/istio.git'
   - 'https://neuvector.github.io/neuvector-helm/'
-  - 'https://kubecost.github.io/cost-analyzer/'
+  - 'https://kubecost.github.io/kubecost/'
