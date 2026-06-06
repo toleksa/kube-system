@@ -27,6 +27,9 @@ spec:
         persistentVolume:
           size: 5Gi
           dbSize: 5Gi
+        aggregator:
+          aggregatorDbStorage:
+            storageRequest: 3Gi
   syncPolicy:
     automated:
       prune: true
