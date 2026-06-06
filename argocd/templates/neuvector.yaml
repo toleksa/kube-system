@@ -32,10 +32,7 @@ spec:
             enabled: true
             host: "neuvector.{{ .Values.domain}}"
             annotations:
-              #cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
-              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-              #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-            tls: true
+            tls: false
             #secretName: neuvector-tls-secret
   syncPolicy:
     automated:
