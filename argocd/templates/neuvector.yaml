@@ -31,7 +31,6 @@ spec:
           ingress:
             enabled: true
             host: "neuvector.{{ .Values.domain}}"
-            annotations:
             tls: false
             #secretName: neuvector-tls-secret
   syncPolicy:
