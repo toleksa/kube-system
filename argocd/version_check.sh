@@ -6,7 +6,7 @@ bitnami/external-dns external-dns
 longhorn/longhorn longhorn
 bitnami/metallb metallb
 prometheus-community/kube-prometheus-stack monitoring
-kubecost/cost-analyzer kubecost
+kubecost/kubecost kubecost
 neuvector/core neuvector
 
 bitnami/fluentd fluentd
