@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://kubecost.github.io/cost-analyzer/'
     chart: cost-analyzer
-    targetRevision: 1.108.1
+    targetRevision: 2.9.6
     helm:
       values: |
         ingress:
