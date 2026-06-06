@@ -28,6 +28,8 @@ spec:
         manager:
           svc:
             type: ClusterIP
+          env:
+            ssl: false
           ingress:
             enabled: true
             host: "neuvector.{{ .Values.domain}}"
