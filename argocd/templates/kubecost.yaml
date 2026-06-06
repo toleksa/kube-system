@@ -18,6 +18,8 @@ spec:
     targetRevision: 2.9.6
     helm:
       values: |
+        global:
+          clusterId: "{{ .Values.domain}}"
         ingress:
           enabled: true
           hosts:
