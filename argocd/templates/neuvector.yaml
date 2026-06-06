@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://neuvector.github.io/neuvector-helm/'
     chart: core
-    targetRevision: 2.6.4
+    targetRevision: 2.10.2
     helm:
       values: |
         k3s:
