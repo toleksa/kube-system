@@ -26,9 +26,8 @@ spec:
         defaultSettings:
           #instance-manager cpu request (x% * all_cpus -> x=1 and 4 cpu gives 40mi)
           guaranteedInstanceManagerCPU: 0
-        #fix for https://github.com/longhorn/charts/pull/126
-        helmPreUpgradeCheckerJob:
-          enabled: false
+        preUpgradeChecker:
+          jobEnabled: false
 {{ if .Values.longhorn }}{{ toYaml .Values.longhorn | indent 8 }}{{- end }}
   syncPolicy:
     automated:
